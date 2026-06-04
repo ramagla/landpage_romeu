@@ -1,0 +1,20 @@
+Coloque as imagens da landing page nesta pasta com estes nomes:
+
+romeu-principal.jpg
+logo-branco.png
+logo-preto.png
+
+portfolio-01.jpg
+portfolio-02.jpg
+portfolio-03.jpg
+portfolio-04.jpg
+portfolio-05.jpg
+portfolio-06.jpg
+portfolio-07.jpg
+portfolio-08.jpg
+portfolio-09.jpg
+portfolio-10.jpg
+portfolio-11.jpg
+
+A página funciona mesmo sem as imagens, exibindo blocos elegantes de reserva.
+Depois que as imagens forem copiadas com esses nomes, elas aparecerão automaticamente.
