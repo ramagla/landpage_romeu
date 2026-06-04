@@ -16,55 +16,37 @@ const links = {
 const services = [
     {
         title: 'Mechas de baixo orçamento',
-        description: 'Técnica, estratégia e cuidado para iluminar os fios com beleza, equilíbrio e sofisticação.',
+        description: 'Iluminação dos fios com técnica, equilíbrio e cuidado.',
     },
     {
         title: 'Colorimetria',
-        description: 'Análise técnica para alcançar tons harmônicos, respeitando o histórico e a saúde do cabelo.',
+        description: 'Análise técnica para tons harmônicos e personalizados.',
     },
     {
         title: 'Mega hair',
-        description: 'Aplicação pensada para valorizar volume, comprimento e naturalidade no resultado final.',
+        description: 'Volume e comprimento com acabamento natural.',
     },
     {
         title: 'Maquiagem social',
-        description: 'Produções elegantes para eventos, celebrações, ensaios e momentos especiais.',
+        description: 'Produções elegantes para eventos e ocasiões especiais.',
     },
     {
         title: 'Maquiagem artística',
-        description: 'Criação visual expressiva, técnica e personalizada para propostas conceituais e criativas.',
+        description: 'Criações expressivas para propostas criativas.',
     },
     {
         title: 'Visagismo',
-        description: 'Beleza construída com identidade, proporção, estilo e leitura personalizada de imagem.',
+        description: 'Imagem, beleza e identidade em harmonia.',
     },
 ]
 
 const education = [
-    {
-        name: 'Studio L’Oréal',
-        detail: 'Técnicas profissionais e atualização em beleza capilar.',
-    },
-    {
-        name: 'Studio Wella',
-        detail: 'Aperfeiçoamento em cor, tratamento e acabamento.',
-    },
-    {
-        name: 'Senac',
-        detail: 'Base técnica, prática profissional e desenvolvimento contínuo.',
-    },
-    {
-        name: 'Philip Hallawell',
-        detail: 'Referência em visagismo e construção de imagem pessoal.',
-    },
-    {
-        name: 'Escola Madre',
-        detail: 'Formação complementar voltada à beleza e atendimento.',
-    },
-    {
-        name: 'Studio Tati Cordeiro',
-        detail: 'Aprimoramento técnico em maquiagem, cabelo e produção.',
-    },
+    'Studio L’Oréal',
+    'Studio Wella',
+    'Senac',
+    'Philip Hallawell',
+    'Escola Madre',
+    'Studio Tati Cordeiro',
 ]
 
 const portfolio = [
@@ -78,44 +60,13 @@ const portfolio = [
     '/images/portfolio-08.jpg',
     '/images/portfolio-09.jpg',
     '/images/portfolio-10.jpg',
-    '/images/portfolio-11.jpg',
 ]
-
 
 function WhatsAppIcon({ className = 'h-5 w-5' }) {
     return (
-        <svg
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-            className={`${className} fill-current`}
-        >
+        <svg viewBox="0 0 32 32" aria-hidden="true" className={`${className} fill-current`}>
             <path d="M16.04 3.2c-7.05 0-12.78 5.72-12.78 12.76 0 2.25.59 4.45 1.72 6.39L3.15 29l6.82-1.79a12.7 12.7 0 0 0 6.07 1.55h.01c7.04 0 12.77-5.72 12.77-12.76S23.09 3.2 16.04 3.2Zm0 23.4h-.01a10.6 10.6 0 0 1-5.41-1.48l-.39-.23-4.05 1.06 1.08-3.95-.25-.41a10.55 10.55 0 0 1-1.62-5.63c0-5.86 4.78-10.63 10.65-10.63 2.84 0 5.52 1.11 7.53 3.12a10.55 10.55 0 0 1 3.12 7.55c0 5.86-4.78 10.6-10.65 10.6Zm5.84-7.95c-.32-.16-1.89-.93-2.18-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-1.01 1.25-.19.21-.37.24-.69.08-.32-.16-1.36-.5-2.59-1.59-.96-.85-1.6-1.9-1.79-2.22-.19-.32-.02-.49.14-.65.15-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.7-.97-2.33-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.66 0 1.57 1.14 3.09 1.3 3.3.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.89-.77 2.16-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37Z" />
         </svg>
-    )
-}
-
-function WhatsAppButton({ children, compact = false, className = '' }) {
-    return (
-        <a
-            href={links.whatsapp}
-            target="_blank"
-            rel="noreferrer"
-            className={`inline-flex items-center justify-center gap-3 rounded-full border border-[#d7c19a]/70 bg-[#15130f] font-semibold text-[#f1dfba] shadow-2xl shadow-black/25 transition hover:-translate-y-1 hover:border-[#f1dfba] hover:bg-[#241f18] hover:text-white ${compact ? 'px-5 py-3 text-sm' : 'px-8 py-4 text-sm'} ${className}`}
-        >
-            <WhatsAppIcon />
-            {children}
-        </a>
-    )
-}
-
-function ImageFallback({ label, className = '' }) {
-    return (
-        <div className={`flex h-full min-h-[260px] w-full items-center justify-center rounded-[2rem] border border-[#d9c7a5]/60 bg-[#eee2d0] p-8 text-center ${className}`}>
-            <div>
-                <p className="font-display text-3xl font-semibold text-[#2a241c]">RF</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.35em] text-[#8a7552]">{label}</p>
-            </div>
-        </div>
     )
 }
 
@@ -123,7 +74,14 @@ function SafeImage({ src, alt, className = '', fallbackLabel = 'Imagem' }) {
     const [hasError, setHasError] = useState(false)
 
     if (hasError) {
-        return <ImageFallback label={fallbackLabel} className={className} />
+        return (
+            <div className={`flex items-center justify-center bg-[#eee2d0] text-center ${className}`}>
+                <div>
+                    <p className="font-display text-4xl font-semibold text-[#201b15]">RF</p>
+                    <p className="mt-2 text-xs uppercase tracking-[0.3em] text-[#8a7552]">{fallbackLabel}</p>
+                </div>
+            </div>
+        )
     }
 
     return (
@@ -137,26 +95,197 @@ function SafeImage({ src, alt, className = '', fallbackLabel = 'Imagem' }) {
     )
 }
 
-function App() {
+function WhatsAppButton({ children, className = '' }) {
     return (
-        <main className="overflow-hidden text-[#191714]">
+        <a
+            href={links.whatsapp}
+            target="_blank"
+            rel="noreferrer"
+            className={`inline-flex items-center justify-center gap-3 rounded-full border border-[#d7c19a]/70 bg-[#15130f] px-7 py-4 text-sm font-semibold text-[#f1dfba] shadow-2xl shadow-black/25 transition hover:-translate-y-1 hover:border-[#f1dfba] hover:bg-[#241f18] hover:text-white ${className}`}
+        >
+            <WhatsAppIcon />
+            {children}
+        </a>
+    )
+}
+
+function MobileLanding() {
+    return (
+        <main className="min-h-screen overflow-hidden bg-[#15130f] text-[#f8f1e8] md:hidden">
+            <section className="relative min-h-screen px-5 pb-5 pt-4">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(215,193,154,0.22),transparent_18rem),radial-gradient(circle_at_bottom_right,rgba(127,151,130,0.24),transparent_20rem)]" />
+
+                <div className="relative z-10 mx-auto flex min-h-[calc(100vh-2rem)] max-w-sm flex-col">
+                    <header className="flex items-center justify-between">
+                        <img
+                            src="/images/logo-branco.png"
+                            alt="RF Beauty Artist"
+                            className="h-16 w-auto max-w-[180px] object-contain"
+                        />
+
+                        <a
+                            href={links.instagram}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="rounded-full border border-[#d7c19a]/40 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#d7c19a]"
+                        >
+                            Instagram
+                        </a>
+                    </header>
+
+                    <div className="mt-4">
+                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#d7c19a]">
+                            Makeup & Hair
+                        </p>
+
+                        <h1 className="mt-2 font-display text-[2.75rem] font-semibold leading-[0.88] tracking-[-0.05em]">
+                            Beleza com técnica e presença.
+                        </h1>
+
+                        <p className="mt-3 text-sm leading-6 text-white/65">
+                            Cabelo, maquiagem e visagismo com atendimento premium em São Paulo.
+                        </p>
+                    </div>
+
+                    <div className="relative mt-4">
+                        <div className="absolute -left-4 top-8 h-36 w-36 rounded-full bg-[#d7c19a]/30 blur-2xl" />
+                        <div className="absolute -right-5 top-12 h-32 w-32 rounded-full bg-[#7f9782]/30 blur-2xl" />
+
+                        <div className="relative grid grid-cols-[0.92fr_1.08fr] items-stretch gap-3">
+                            <div className="overflow-hidden rounded-[1.5rem] border border-white/12 bg-white/5 p-1.5 shadow-2xl shadow-black/30">
+                                <SafeImage
+                                    src="/images/romeu-principal.jpg"
+                                    alt="Romeu Ferrazin"
+                                    className="h-[15.5rem] w-full rounded-[1.1rem] object-cover object-center"
+                                    fallbackLabel="Romeu"
+                                />
+                            </div>
+
+                            <div className="rounded-[1.5rem] border border-[#ead8b3]/45 bg-[#f8f1e8] p-4 text-[#191714] shadow-2xl shadow-black/30">
+                                <p className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-[#8a7552]">
+                                    Agende agora
+                                </p>
+
+                                <h2 className="mt-2 font-display text-2xl font-semibold leading-none">
+                                    Consulte valores e horários
+                                </h2>
+
+                                <p className="mt-2 text-xs leading-5 text-[#5a4b3a]">
+                                    Atendimento no salão, com experiência personalizada para cada cliente.
+                                </p>
+
+                                <a
+                                    href={links.whatsapp}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-xs font-bold text-[#08240f]"
+                                >
+                                    <WhatsAppIcon className="h-4 w-4" />
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-4 grid grid-cols-3 gap-2">
+                        <a
+                            href={links.whatsapp}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="rounded-[1rem] border border-[#d7c19a]/35 bg-white/[0.04] p-3 text-center"
+                        >
+                            <p className="text-lg text-[#d7c19a]">☎</p>
+                            <p className="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white/70">
+                                WhatsApp
+                            </p>
+                        </a>
+
+                        <a
+                            href={links.instagram}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="rounded-[1rem] border border-[#d7c19a]/35 bg-white/[0.04] p-3 text-center"
+                        >
+                            <p className="text-lg text-[#d7c19a]">◎</p>
+                            <p className="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white/70">
+                                Instagram
+                            </p>
+                        </a>
+
+                        <a
+                            href={links.maps}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="rounded-[1rem] border border-[#d7c19a]/35 bg-white/[0.04] p-3 text-center"
+                        >
+                            <p className="text-lg text-[#d7c19a]">⌖</p>
+                            <p className="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-white/70">
+                                Endereço
+                            </p>
+                        </a>
+                    </div>
+
+                    <div className="mt-4 rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
+                        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-[#d7c19a]">
+                            Serviços
+                        </p>
+
+                        <div className="mt-3 flex flex-wrap gap-2">
+                            {services.map((service) => (
+                                <span
+                                    key={service.title}
+                                    className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-[0.72rem] font-medium text-white/72"
+                                >
+                                    {service.title}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="mt-4 rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
+                        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-[#d7c19a]">
+                            Local
+                        </p>
+                        <p className="mt-2 text-xs leading-5 text-white/62">
+                            Rua Monte Alegre, 47 · São Paulo · 05014-000
+                        </p>
+                    </div>
+
+                    <div className="mt-auto pt-4 text-center">
+                        <p className="font-display text-2xl font-semibold">RF Beauty Artist</p>
+                        <p className="text-[0.68rem] uppercase tracking-[0.22em] text-white/40">
+                            Desde 2002
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <a
+                href={links.whatsapp}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Chamar RF Beauty Artist no WhatsApp"
+                className="fixed bottom-4 right-4 z-50 inline-flex h-13 w-13 items-center justify-center rounded-full bg-[#25D366] p-4 text-[#08240f] shadow-2xl shadow-black/35"
+            >
+                <WhatsAppIcon className="h-6 w-6" />
+            </a>
+        </main>
+    )
+}
+
+function DesktopLanding() {
+    return (
+        <main className="hidden overflow-hidden text-[#191714] md:block">
             <section className="relative min-h-screen bg-[#191714] text-[#f8f1e8]">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(201,172,120,0.28),transparent_34rem),linear-gradient(135deg,rgba(25,23,20,0.94),rgba(25,23,20,0.72))]" />
 
                 <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-7 lg:px-10">
-                    <a href="#inicio" className="flex items-center gap-4">
+                    <a href="#inicio" className="flex items-center">
                         <img
                             src="/images/logo-branco.png"
                             alt="RF Beauty Artist"
-                            className="h-14 w-auto"
-                            onError={(event) => {
-                                event.currentTarget.style.display = 'none'
-                            }}
+                            className="h-24 w-auto max-w-[360px] object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.55)]"
                         />
-                        <div>
-                            <p className="font-display text-2xl font-semibold leading-none">RF Beauty Artist</p>
-                            <p className="mt-1 text-[0.65rem] uppercase tracking-[0.38em] text-[#d7c19a]">Makeup & Hair</p>
-                        </div>
                     </a>
 
                     <nav className="hidden items-center gap-8 text-sm text-[#f8f1e8]/80 md:flex">
@@ -166,7 +295,7 @@ function App() {
                         <a href="#contato" className="transition hover:text-[#d7c19a]">Contato</a>
                     </nav>
 
-                    <WhatsAppButton compact className="hidden md:inline-flex">
+                    <WhatsAppButton className="px-5 py-3">
                         Agendar
                     </WhatsAppButton>
                 </header>
@@ -221,7 +350,7 @@ function App() {
                         <div className="float-soft relative overflow-hidden rounded-[3rem] border border-white/15 bg-white/8 p-3 shadow-2xl shadow-black/40 backdrop-blur">
                             <SafeImage
                                 src="/images/romeu-principal.jpg"
-                                alt="Romeu Ferrazin, profissional especializado em cabelo e maquiagem"
+                                alt="Romeu Ferrazin"
                                 className="h-[32rem] w-full rounded-[2.4rem] object-cover object-center"
                                 fallbackLabel="Foto principal"
                             />
@@ -244,10 +373,10 @@ function App() {
                             Desde 2002, Romeu Ferrazin atua no mercado da beleza transformando autoestima por meio de cabelo, maquiagem e visagismo. À frente da RF Beauty Artist, une experiência, sensibilidade estética e atendimento personalizado para valorizar a beleza única de cada mulher.
                         </p>
                         <p>
-                            Cada atendimento é pensado para proporcionar uma experiência leve, acolhedora e sofisticada, respeitando o estilo, a personalidade e o momento de cada cliente. Mais do que transformar a aparência, o propósito é entregar confiança, presença e identidade.
+                            Cada atendimento é pensado para proporcionar uma experiência leve, acolhedora e sofisticada, respeitando o estilo, a personalidade e o momento de cada cliente.
                         </p>
                         <p>
-                            Pontualidade, qualidade, perfeccionismo e excelência no atendimento fazem parte de cada etapa do processo, garantindo uma experiência premium do primeiro contato ao resultado final.
+                            Pontualidade, qualidade, perfeccionismo e excelência no atendimento fazem parte de cada etapa do processo.
                         </p>
                     </div>
                 </div>
@@ -312,7 +441,7 @@ function App() {
                         </a>
                     </div>
 
-                    <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3">
+                    <div className="mt-14 columns-2 gap-5 lg:columns-3">
                         {portfolio.map((image, index) => (
                             <div
                                 key={image}
@@ -330,7 +459,7 @@ function App() {
                 </div>
             </section>
 
-            <section className="relative bg-[#efe2d0] px-6 py-24 lg:px-10">
+            <section className="relative overflow-hidden bg-[#efe2d0] px-6 py-24 lg:px-10">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(127,151,130,0.22),transparent_30rem),radial-gradient(circle_at_bottom_right,rgba(201,172,120,0.25),transparent_34rem)]" />
 
                 <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.88fr_1.12fr]">
@@ -344,10 +473,10 @@ function App() {
                         </p>
                     </div>
 
-                    <div className="grid gap-4 sm:grid-cols-2">
-                        {education.map((item) => (
+                    <div className="grid gap-4 md:grid-cols-2">
+                        {education.map((item, index) => (
                             <article
-                                key={item.name}
+                                key={item}
                                 className="group rounded-[1.7rem] border border-[#2a241c]/10 bg-[#201b15] p-6 text-[#f8f1e8] shadow-2xl shadow-[#5b4b33]/10 transition duration-300 hover:-translate-y-1 hover:border-[#d7c19a]/70"
                             >
                                 <div className="mb-6 flex items-center justify-between">
@@ -355,11 +484,10 @@ function App() {
                                         Formação
                                     </span>
                                     <span className="font-display text-3xl font-semibold text-[#d7c19a]/70">
-                                        {String(education.indexOf(item) + 1).padStart(2, '0')}
+                                        {String(index + 1).padStart(2, '0')}
                                     </span>
                                 </div>
-                                <h3 className="text-xl font-semibold text-white">{item.name}</h3>
-                                <p className="mt-3 leading-7 text-white/62">{item.detail}</p>
+                                <h3 className="text-xl font-semibold text-white">{item}</h3>
                             </article>
                         ))}
                     </div>
@@ -377,7 +505,7 @@ function App() {
                         Atendimento no salão localizado na Rua Monte Alegre, 47, São Paulo. Consulte valores, horários disponíveis e escolha o melhor momento para cuidar da sua imagem.
                     </p>
 
-                    <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                    <div className="mt-10 flex justify-center gap-4">
                         <WhatsAppButton>
                             Agendar pelo WhatsApp
                         </WhatsAppButton>
@@ -414,24 +542,16 @@ function App() {
                     </div>
                 </div>
             </footer>
-
-            <a
-                href={links.whatsapp}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Chamar RF Beauty Artist no WhatsApp"
-                className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-[#25D366] text-white shadow-2xl shadow-black/30 transition hover:-translate-y-1 hover:bg-[#1ebe5d] sm:h-auto sm:w-auto sm:gap-3 sm:px-5 sm:py-3"
-            >
-                <svg
-                    viewBox="0 0 32 32"
-                    aria-hidden="true"
-                    className="h-6 w-6 fill-current"
-                >
-                    <path d="M16.04 3.2c-7.05 0-12.78 5.72-12.78 12.76 0 2.25.59 4.45 1.72 6.39L3.15 29l6.82-1.79a12.7 12.7 0 0 0 6.07 1.55h.01c7.04 0 12.77-5.72 12.77-12.76S23.09 3.2 16.04 3.2Zm0 23.4h-.01a10.6 10.6 0 0 1-5.41-1.48l-.39-.23-4.05 1.06 1.08-3.95-.25-.41a10.55 10.55 0 0 1-1.62-5.63c0-5.86 4.78-10.63 10.65-10.63 2.84 0 5.52 1.11 7.53 3.12a10.55 10.55 0 0 1 3.12 7.55c0 5.86-4.78 10.6-10.65 10.6Zm5.84-7.95c-.32-.16-1.89-.93-2.18-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-1.01 1.25-.19.21-.37.24-.69.08-.32-.16-1.36-.5-2.59-1.59-.96-.85-1.6-1.9-1.79-2.22-.19-.32-.02-.49.14-.65.15-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.7-.97-2.33-.26-.61-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.66 0 1.57 1.14 3.09 1.3 3.3.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.89-.77 2.16-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37Z" />
-                </svg>
-                <span className="hidden text-sm font-semibold sm:inline">WhatsApp</span>
-            </a>
         </main>
+    )
+}
+
+function App() {
+    return (
+        <>
+            <MobileLanding />
+            <DesktopLanding />
+        </>
     )
 }
 
