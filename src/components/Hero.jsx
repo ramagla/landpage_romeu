@@ -33,7 +33,7 @@ export function Hero() {
                             href={siteConfig.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            aria-label="Ver Instagram da RF Beauty Artist"
+                            aria-label="Ver Instagram da Romeu Beauty"
                             onClick={() => handleCtaClick('instagram_header')}
                             className="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white transition hover:-translate-y-1 hover:border-[#d7c19a] hover:text-[#d7c19a] focus:outline-none focus:ring-2 focus:ring-[#d7c19a] focus:ring-offset-2 focus:ring-offset-[#191714]"
                         >
@@ -62,7 +62,7 @@ export function Hero() {
                     <div className="float-soft relative overflow-hidden rounded-[2rem] border border-white/15 bg-white/8 p-2.5 shadow-2xl shadow-black/40 backdrop-blur md:rounded-[3rem] md:p-3">
                         <SafeImage
                             src="/images/romeu-principal.jpg"
-                            alt="Romeu Ferrazin, profissional da RF Beauty Artist"
+                            alt="Romeu Ferrazin, profissional da Romeu Beauty"
                             className="h-[22rem] w-full rounded-[1.5rem] object-cover object-center md:h-[32rem] md:rounded-[2.4rem]"
                             fallbackLabel="Romeu Ferrazin"
                             loading="eager"

@@ -40,7 +40,7 @@ export function Header() {
                 href={siteConfig.instagramUrl}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Abrir Instagram da RF Beauty Artist"
+                aria-label="Abrir Instagram da Romeu Beauty"
                 onClick={() => handleCtaClick('instagram_header')}
                 className="rounded-full border border-[#d7c19a]/40 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#d7c19a] transition hover:border-[#f1dfba] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#d7c19a] md:hidden"
             >

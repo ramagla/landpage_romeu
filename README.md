@@ -1,6 +1,6 @@
-# RF Beauty Artist - Landing Page
+# Romeu Beauty - Landing Page
 
-Landing page profissional da RF Beauty Artist / Romeu Ferrazin, desenvolvida com React, Vite e Tailwind CSS para apresentar serviços de cabelo, maquiagem, mechas, colorimetria, mega hair e visagismo em São Paulo.
+Landing page profissional da Romeu Beauty / Romeu Ferrazin, desenvolvida com React, Vite e Tailwind CSS para apresentar serviços de cabelo, maquiagem, mechas, colorimetria, mega hair e visagismo em São Paulo.
 
 URL pública oficial: https://www.romeuferrazin.com.br
 
@@ -18,7 +18,7 @@ As variáveis abaixo podem ser configuradas na Vercel em todos os ambientes. O p
 
 ```env
 VITE_SITE_URL=https://www.romeuferrazin.com.br
-VITE_BRAND_NAME=RF Beauty Artist
+VITE_BRAND_NAME=Romeu Beauty
 VITE_PROFESSIONAL_NAME=Romeu Ferrazin
 VITE_WHATSAPP_NUMBER=5511964698679
 VITE_INSTAGRAM_URL=https://www.instagram.com/romeubeauty/

@@ -7,7 +7,7 @@ export function WhyChoose() {
                 <div className="max-w-3xl">
                     <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#d7c19a]">Diferenciais</p>
                     <h2 id="why-title" className="mt-5 font-display text-4xl font-semibold leading-none tracking-[-0.03em] md:text-6xl">
-                        Por que escolher a RF Beauty Artist?
+                        Por que escolher Romeu Beauty?
                     </h2>
                 </div>
 

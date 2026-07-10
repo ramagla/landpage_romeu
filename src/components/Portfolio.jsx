@@ -18,7 +18,7 @@ export function Portfolio() {
                         href={siteConfig.instagramUrl}
                         target="_blank"
                         rel="noreferrer"
-                        aria-label="Acompanhar portfólio da RF Beauty Artist no Instagram"
+                        aria-label="Acompanhar portfólio da Romeu Beauty no Instagram"
                         onClick={() => handleCtaClick('instagram_portfolio')}
                         className="inline-flex rounded-full border border-[#201b15]/20 px-7 py-4 text-sm font-bold uppercase tracking-[0.18em] text-[#201b15] transition hover:border-[#8a7552] hover:bg-[#201b15] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8a7552] focus:ring-offset-2 focus:ring-offset-[#f6efe6]"
                     >

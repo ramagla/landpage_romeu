@@ -23,7 +23,7 @@ export function MobileBusinessCard() {
                             href={siteConfig.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            aria-label="Abrir Instagram da RF Beauty Artist"
+                            aria-label="Abrir Instagram da Romeu Beauty"
                             onClick={() => handleCtaClick('instagram_header')}
                             className="rounded-full border border-[#d7c19a]/40 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#d7c19a]"
                         >
@@ -53,7 +53,7 @@ export function MobileBusinessCard() {
                             <div className="overflow-hidden rounded-[1.5rem] border border-white/12 bg-white/5 p-1.5 shadow-2xl shadow-black/30">
                                 <SafeImage
                                     src="/images/romeu-principal.jpg"
-                                    alt="Romeu Ferrazin, profissional da RF Beauty Artist"
+                                    alt="Romeu Ferrazin, profissional da Romeu Beauty"
                                     className="h-[15.5rem] w-full rounded-[1.1rem] object-cover object-center"
                                     fallbackLabel="Romeu"
                                     loading="eager"
@@ -97,7 +97,7 @@ export function MobileBusinessCard() {
                             href={siteConfig.whatsappUrl}
                             target="_blank"
                             rel="noreferrer"
-                            aria-label="Chamar RF Beauty Artist no WhatsApp"
+                            aria-label="Chamar Romeu Beauty no WhatsApp"
                             onClick={() => handleCtaClick('whatsapp_hero')}
                             className="rounded-[1rem] border border-[#d7c19a]/35 bg-white/[0.04] p-3 text-center"
                         >
@@ -111,7 +111,7 @@ export function MobileBusinessCard() {
                             href={siteConfig.instagramUrl}
                             target="_blank"
                             rel="noreferrer"
-                            aria-label="Abrir Instagram da RF Beauty Artist"
+                            aria-label="Abrir Instagram da Romeu Beauty"
                             onClick={() => handleCtaClick('instagram_header')}
                             className="rounded-[1rem] border border-[#d7c19a]/35 bg-white/[0.04] p-3 text-center"
                         >
@@ -125,7 +125,7 @@ export function MobileBusinessCard() {
                             href={siteConfig.mapsUrl}
                             target="_blank"
                             rel="noreferrer"
-                            aria-label="Ver endereço da RF Beauty Artist no Google Maps"
+                            aria-label="Ver endereço da Romeu Beauty no Google Maps"
                             onClick={() => handleCtaClick('maps_contact')}
                             className="rounded-[1rem] border border-[#d7c19a]/35 bg-white/[0.04] p-3 text-center"
                         >

@@ -11,13 +11,13 @@ export function Footer() {
                 </div>
 
                 <div className="flex flex-wrap gap-5 text-sm">
-                    <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer" aria-label="Abrir Instagram da RF Beauty Artist" onClick={() => handleCtaClick('instagram_footer')} className="transition hover:text-[#d7c19a] focus:outline-none focus:ring-2 focus:ring-[#d7c19a]">
+                    <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer" aria-label="Abrir Instagram da Romeu Beauty" onClick={() => handleCtaClick('instagram_footer')} className="transition hover:text-[#d7c19a] focus:outline-none focus:ring-2 focus:ring-[#d7c19a]">
                         Instagram
                     </a>
-                    <a href={siteConfig.facebookUrl} target="_blank" rel="noreferrer" aria-label="Abrir Facebook da RF Beauty Artist" className="transition hover:text-[#d7c19a] focus:outline-none focus:ring-2 focus:ring-[#d7c19a]">
+                    <a href={siteConfig.facebookUrl} target="_blank" rel="noreferrer" aria-label="Abrir Facebook da Romeu Beauty" className="transition hover:text-[#d7c19a] focus:outline-none focus:ring-2 focus:ring-[#d7c19a]">
                         Facebook
                     </a>
-                    <a href={siteConfig.mapsUrl} target="_blank" rel="noreferrer" aria-label="Ver endereço da RF Beauty Artist no Google Maps" onClick={() => handleCtaClick('maps_contact')} className="transition hover:text-[#d7c19a] focus:outline-none focus:ring-2 focus:ring-[#d7c19a]">
+                    <a href={siteConfig.mapsUrl} target="_blank" rel="noreferrer" aria-label="Ver endereço da Romeu Beauty no Google Maps" onClick={() => handleCtaClick('maps_contact')} className="transition hover:text-[#d7c19a] focus:outline-none focus:ring-2 focus:ring-[#d7c19a]">
                         Rua Monte Alegre, 47
                     </a>
                 </div>

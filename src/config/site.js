@@ -1,5 +1,5 @@
 const siteUrl = import.meta.env.VITE_SITE_URL || 'https://www.romeuferrazin.com.br'
-const brandName = import.meta.env.VITE_BRAND_NAME || 'RF Beauty Artist'
+const brandName = 'Romeu Beauty'
 const professionalName = import.meta.env.VITE_PROFESSIONAL_NAME || 'Romeu Ferrazin'
 const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5511964698679'
 const instagramUrl = import.meta.env.VITE_INSTAGRAM_URL || 'https://www.instagram.com/romeubeauty/'
@@ -111,42 +111,42 @@ export const education = [
 export const portfolio = [
     {
         src: '/images/portfolio-01.jpg',
-        alt: 'Resultado de cabelo e beleza realizado pela RF Beauty Artist',
+        alt: 'Resultado de cabelo e beleza realizado pela Romeu Beauty',
     },
     {
         src: '/images/portfolio-02.jpg',
-        alt: 'Produção de maquiagem e cabelo da RF Beauty Artist',
+        alt: 'Produção de maquiagem e cabelo da Romeu Beauty',
     },
     {
         src: '/images/portfolio-03.jpg',
-        alt: 'Portfólio de atendimento de beleza RF Beauty Artist',
+        alt: 'Portfólio de atendimento de beleza Romeu Beauty',
     },
     {
         src: '/images/portfolio-04.jpg',
-        alt: 'Resultado de cabelo e maquiagem da RF Beauty Artist',
+        alt: 'Resultado de cabelo e maquiagem da Romeu Beauty',
     },
     {
         src: '/images/portfolio-05.jpg',
-        alt: 'Produção de beleza personalizada da RF Beauty Artist',
+        alt: 'Produção de beleza personalizada da Romeu Beauty',
     },
     {
         src: '/images/portfolio-06.jpg',
-        alt: 'Atendimento de cabelo e imagem realizado pela RF Beauty Artist',
+        alt: 'Atendimento de cabelo e imagem realizado pela Romeu Beauty',
     },
     {
         src: '/images/portfolio-07.jpg',
-        alt: 'Portfólio de cabelo, maquiagem e visagismo da RF Beauty Artist',
+        alt: 'Portfólio de cabelo, maquiagem e visagismo da Romeu Beauty',
     },
     {
         src: '/images/portfolio-08.jpg',
-        alt: 'Resultado de beleza com acabamento premium da RF Beauty Artist',
+        alt: 'Resultado de beleza com acabamento premium da Romeu Beauty',
     },
     {
         src: '/images/portfolio-09.jpg',
-        alt: 'Produção de cabelo e maquiagem assinada pela RF Beauty Artist',
+        alt: 'Produção de cabelo e maquiagem assinada pela Romeu Beauty',
     },
     {
         src: '/images/portfolio-10.jpg',
-        alt: 'Portfólio de atendimento premium em beleza da RF Beauty Artist',
+        alt: 'Portfólio de atendimento premium em beleza da Romeu Beauty',
     },
 ]

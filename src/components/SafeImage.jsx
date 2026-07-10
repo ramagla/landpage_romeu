@@ -17,7 +17,7 @@ export function SafeImage({
         return (
             <div className={`flex items-center justify-center bg-[#eee2d0] text-center ${className}`}>
                 <div>
-                    <p className="font-display text-4xl font-semibold text-[#201b15]">RF</p>
+                    <p className="font-display text-4xl font-semibold text-[#201b15]">RB</p>
                     <p className="mt-2 text-xs uppercase tracking-[0.3em] text-[#8a7552]">{fallbackLabel}</p>
                 </div>
             </div>
