@@ -31,6 +31,30 @@ export const services = [
         description: 'Iluminação dos fios com técnica, equilíbrio e cuidado para valorizar o visual com acabamento sofisticado.',
     },
     {
+        title: 'Luzes',
+        description: 'Clareamento delicado e harmonioso, proporcionando luminosidade natural e um aspecto moderno aos cabelos.',
+    },
+    {
+        title: 'Reflexos',
+        description: 'Técnica que cria pontos de luz sutis e distribuídos, garantindo leveza, dimensão e um resultado natural.',
+    },
+    {
+        title: 'Mechas de baixa manutenção',
+        description: 'Efeito natural e elegante, pensado para durar mais tempo entre os retoques. Ideal para quem busca praticidade, beleza e economia sem abrir mão de um resultado sofisticado.',
+    },
+    {
+        title: 'Moreno iluminado',
+        description: 'Tons iluminados cuidadosamente distribuídos criam profundidade, movimento e luminosidade, valorizando a beleza dos fios escuros com elegância e harmonia.',
+    },
+    {
+        title: 'Corte feminino',
+        description: 'Cada detalhe é pensado para valorizar seus traços, realçar a beleza natural dos fios e criar um visual moderno, elegante e harmonioso.',
+    },
+    {
+        title: 'Corte masculino',
+        description: 'Estilo, precisão e personalidade para um visual alinhado, moderno e sofisticado, respeitando seu estilo e rotina.',
+    },
+    {
         title: 'Colorimetria',
         description: 'Análise técnica para tons harmônicos, personalizados e alinhados ao estilo de cada cliente.',
     },
