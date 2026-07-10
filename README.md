@@ -2,7 +2,7 @@
 
 Landing page profissional da RF Beauty Artist / Romeu Ferrazin, desenvolvida com React, Vite e Tailwind CSS para apresentar serviços de cabelo, maquiagem, mechas, colorimetria, mega hair e visagismo em São Paulo.
 
-URL de produção atual: https://landpage-romeu.vercel.app
+URL pública oficial: https://www.romeuferrazin.com.br
 
 ## Tecnologias
 
@@ -17,7 +17,7 @@ URL de produção atual: https://landpage-romeu.vercel.app
 As variáveis abaixo podem ser configuradas na Vercel em todos os ambientes. O projeto possui fallbacks seguros em `src/config/site.js`.
 
 ```env
-VITE_SITE_URL=https://landpage-romeu.vercel.app
+VITE_SITE_URL=https://www.romeuferrazin.com.br
 VITE_BRAND_NAME=RF Beauty Artist
 VITE_PROFESSIONAL_NAME=Romeu Ferrazin
 VITE_WHATSAPP_NUMBER=5511964698679
@@ -78,11 +78,11 @@ public/
 
 O projeto inclui metadados técnicos no `index.html`, Open Graph, Twitter Card, canonical, robots, sitemap e JSON-LD do tipo `BeautySalon` com informações confirmadas do negócio.
 
-- Sitemap: https://landpage-romeu.vercel.app/sitemap.xml
-- Robots: https://landpage-romeu.vercel.app/robots.txt
-- Imagem OG atual: `https://landpage-romeu.vercel.app/images/romeu-principal.jpg`
+- Sitemap: https://www.romeuferrazin.com.br/sitemap.xml
+- Robots: https://www.romeuferrazin.com.br/robots.txt
+- Imagem OG atual: `https://www.romeuferrazin.com.br/images/romeu-principal.jpg`
 
-Caso uma imagem social dedicada seja criada futuramente, ela pode ser publicada como `public/og-image.jpg` e os metadados devem ser atualizados para `https://landpage-romeu.vercel.app/og-image.jpg`.
+Caso uma imagem social dedicada seja criada futuramente, ela pode ser publicada como `public/og-image.jpg` e os metadados devem ser atualizados para `https://www.romeuferrazin.com.br/og-image.jpg`.
 
 ## Analytics
 
@@ -116,4 +116,4 @@ Eventos preparados:
 
 ## Domínio
 
-O domínio atual é o domínio Vercel do projeto: `https://landpage-romeu.vercel.app`. Se houver troca para domínio próprio, atualizar `VITE_SITE_URL`, `index.html`, `robots.txt`, `sitemap.xml` e metadados sociais.
+O deploy continua hospedado na Vercel, mas o domínio público oficial é `https://www.romeuferrazin.com.br`. Se houver troca futura de domínio, atualizar `VITE_SITE_URL`, `index.html`, `robots.txt`, `sitemap.xml` e metadados sociais.

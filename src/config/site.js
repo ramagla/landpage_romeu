@@ -1,4 +1,4 @@
-const siteUrl = import.meta.env.VITE_SITE_URL || 'https://landpage-romeu.vercel.app'
+const siteUrl = import.meta.env.VITE_SITE_URL || 'https://www.romeuferrazin.com.br'
 const brandName = import.meta.env.VITE_BRAND_NAME || 'RF Beauty Artist'
 const professionalName = import.meta.env.VITE_PROFESSIONAL_NAME || 'Romeu Ferrazin'
 const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5511964698679'
