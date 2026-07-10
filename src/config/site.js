@@ -55,6 +55,10 @@ export const services = [
         description: 'Estilo, precisão e personalidade para um visual alinhado, moderno e sofisticado, respeitando seu estilo e rotina.',
     },
     {
+        title: 'Gloss Express',
+        description: 'Coloração permanente que pigmenta exclusivamente os fios brancos, sem alterar o tom natural do restante do cabelo. Feita para uso profissional, age rápido, de 3 a 20 minutos, é livre de chumbo e metais pesados, e proporciona brilho intenso e natural.',
+    },
+    {
         title: 'Colorimetria',
         description: 'Análise técnica para tons harmônicos, personalizados e alinhados ao estilo de cada cliente.',
     },
