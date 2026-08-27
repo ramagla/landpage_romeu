@@ -12,7 +12,7 @@ function addScript(source) {
 export function GoogleAnalytics() {
     useEffect(() => {
         const gtmId = import.meta.env.VITE_GTM_ID
-        const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-9PBDERESP5'
+        const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-VJNEGM0MP0'
 
         window.dataLayer = window.dataLayer || []
         window.gtag = window.gtag || function gtag() {
