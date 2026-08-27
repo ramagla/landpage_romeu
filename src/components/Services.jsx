@@ -8,10 +8,10 @@ export function Services() {
                 <div className="max-w-3xl">
                     <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#d7c19a]">Serviços</p>
                     <h2 id="services-title" className="mt-5 font-display text-4xl font-semibold leading-none tracking-[-0.03em] md:text-6xl">
-                        Cabelo, maquiagem e imagem com acabamento premium.
+                        Serviços de beleza em Perdizes, feitos para sua imagem.
                     </h2>
                     <p className="mt-6 text-lg leading-8 text-white/66">
-                        Trabalhamos com produtos de alta qualidade e técnicas atualizadas para preservar a saúde dos fios e entregar resultados alinhados ao seu estilo.
+                        Cabelo, mechas, corte, coloração, extensão, maquiagem e visagismo em São Paulo, com técnicas atualizadas e atendimento personalizado.
                     </p>
                 </div>
 
