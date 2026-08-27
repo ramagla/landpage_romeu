@@ -3,6 +3,7 @@ import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { Education } from './components/Education'
 import { FloatingWhatsApp } from './components/FloatingWhatsApp'
+import { GoogleAnalytics } from './components/GoogleAnalytics'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { MobileBusinessCard } from './components/MobileBusinessCard'
@@ -28,6 +29,7 @@ function App() {
                 <Footer />
             </div>
             <FloatingWhatsApp />
+            <GoogleAnalytics />
             <Analytics />
         </>
     )

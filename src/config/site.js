@@ -17,6 +17,7 @@ export const siteConfig = {
     professionalName,
     whatsappNumber,
     phoneDisplay: '+55 11 96469-8679',
+    phoneUrl: `tel:+${whatsappNumber}`,
     instagramUrl,
     facebookUrl,
     address,
