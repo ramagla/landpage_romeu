@@ -13,6 +13,7 @@ export function GoogleAnalytics() {
     useEffect(() => {
         const gtmId = import.meta.env.VITE_GTM_ID
         const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-VJNEGM0MP0'
+        const googleAdsId = import.meta.env.VITE_GOOGLE_ADS_ID || 'AW-18410721657'
 
         window.dataLayer = window.dataLayer || []
         window.gtag = window.gtag || function gtag() {
@@ -29,6 +30,7 @@ export function GoogleAnalytics() {
             addScript(`https://www.googletagmanager.com/gtag/js?id=${measurementId}`)
             window.gtag('js', new Date())
             window.gtag('config', measurementId)
+            window.gtag('config', googleAdsId)
         }
     }, [])
 
