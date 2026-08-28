@@ -1,4 +1,6 @@
 const eventDefinitions = {
+    whatsapp_cta: { event: 'click_whatsapp', cta_location: 'generic_cta' },
+    whatsapp_header: { event: 'click_whatsapp', cta_location: 'header' },
     whatsapp_floating: { event: 'click_whatsapp', cta_location: 'floating_button' },
     whatsapp_hero: { event: 'click_whatsapp', cta_location: 'hero' },
     whatsapp_contact: { event: 'click_whatsapp', cta_location: 'contact_section' },
