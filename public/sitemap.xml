@@ -6,4 +6,7 @@
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
+    <url><loc>https://www.romeuferrazin.com.br/servicos/mechas/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://www.romeuferrazin.com.br/servicos/maquiagem-visagismo/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+    <url><loc>https://www.romeuferrazin.com.br/servicos/corte-coloracao/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
