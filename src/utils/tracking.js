@@ -33,7 +33,7 @@ export function trackEvent(eventName, parameters = {}) {
 
         if (event === 'click_whatsapp') {
             window.gtag('event', 'conversion', {
-                send_to: 'AW-18410721657/BW3WCKySioKcEPmi9cpE',
+                send_to: 'AW-18410721657/BW3WCKySiOkcEPmi9cpE',
             })
         }
     }
