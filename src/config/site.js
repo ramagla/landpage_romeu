@@ -1,4 +1,4 @@
-const siteUrl = import.meta.env.VITE_SITE_URL || 'https://www.romeuferrazin.com.br'
+const siteUrl = import.meta.env.VITE_SITE_URL || 'https://www.romeubeauty.com.br'
 const brandName = 'Romeu Beauty'
 const professionalName = import.meta.env.VITE_PROFESSIONAL_NAME || 'Romeu Ferrazin'
 const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5511964698679'
