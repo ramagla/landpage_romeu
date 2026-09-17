@@ -29,13 +29,15 @@ export function trackEvent(eventName, parameters = {}) {
 
     if (typeof window.gtag === 'function') {
         const { event, ...eventParameters } = payload
-        window.gtag('event', event, eventParameters)
 
         if (event === 'click_whatsapp') {
             window.gtag('event', 'conversion', {
                 send_to: 'AW-18410721657/BW3WCKySiOkcEPmi9cpE',
+                transport_type: 'beacon',
             })
         }
+
+        window.gtag('event', event, eventParameters)
     }
 
     if (import.meta.env.DEV) {
