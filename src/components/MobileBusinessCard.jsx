@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { services, siteConfig } from '../config/site'
 import { handleCtaClick } from '../utils/tracking'
 import { SafeImage } from './SafeImage'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
 export function MobileBusinessCard() {
+    const [selectedService, setSelectedService] = useState(null)
+
     return (
         <main className="min-h-screen overflow-hidden bg-[#15130f] text-[#f8f1e8] md:hidden">
             <section className="relative min-h-screen px-5 pb-5 pt-4">
@@ -143,12 +146,15 @@ export function MobileBusinessCard() {
 
                         <div className="mt-3 flex flex-wrap gap-2">
                             {services.map((service) => (
-                                <span
+                                <button
+                                    type="button"
                                     key={service.title}
-                                    className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-[0.72rem] font-medium text-white/72"
+                                    onClick={() => setSelectedService(service)}
+                                    aria-haspopup="dialog"
+                                    className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-[0.72rem] font-medium text-white/72 transition hover:border-[#d7c19a]/70 hover:bg-white/[0.1] focus:outline-none focus:ring-2 focus:ring-[#d7c19a]"
                                 >
                                     {service.title}
-                                </span>
+                                </button>
                             ))}
                         </div>
                     </div>
@@ -200,6 +206,55 @@ export function MobileBusinessCard() {
                     </blockquote>
                 </article>
             </section>
+
+            {selectedService && (
+                <div
+                    className="fixed inset-0 z-50 flex items-end bg-black/70 p-4 backdrop-blur-sm"
+                    role="presentation"
+                    onClick={() => setSelectedService(null)}
+                >
+                    <section
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="service-modal-title"
+                        className="w-full rounded-[1.75rem] border border-[#d7c19a]/45 bg-[#f8f1e8] p-6 text-[#191714] shadow-2xl"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        <div className="flex items-start justify-between gap-5">
+                            <div>
+                                <p className="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#8a7552]">Serviço</p>
+                                <h2 id="service-modal-title" className="mt-2 font-display text-3xl font-semibold leading-none">
+                                    {selectedService.title}
+                                </h2>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setSelectedService(null)}
+                                aria-label="Fechar detalhes do serviço"
+                                className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#8a7552]/35 text-2xl leading-none text-[#5a4b3a] transition hover:border-[#8a7552] focus:outline-none focus:ring-2 focus:ring-[#8a7552]"
+                            >
+                                ×
+                            </button>
+                        </div>
+
+                        <p className="mt-5 text-sm leading-6 text-[#5a4b3a]">
+                            {selectedService.description}
+                        </p>
+
+                        <a
+                            href={siteConfig.whatsappUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`Consultar ${selectedService.title} pelo WhatsApp`}
+                            onClick={() => handleCtaClick('whatsapp_service_modal')}
+                            className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3.5 text-sm font-bold text-[#08240f]"
+                        >
+                            <WhatsAppIcon className="h-5 w-5" />
+                            Consultar pelo WhatsApp
+                        </a>
+                    </section>
+                </div>
+            )}
         </main>
     )
 }
