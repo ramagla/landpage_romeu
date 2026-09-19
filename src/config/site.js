@@ -28,8 +28,8 @@ export const siteConfig = {
 
 export const services = [
     {
-        title: 'Mechas de baixo orçamento',
-        description: 'Iluminação dos fios com técnica, equilíbrio e cuidado para valorizar o visual com acabamento sofisticado.',
+        title: 'Mechas personalizadas',
+        description: 'Iluminação criada para o seu tom, estilo e rotina, com técnica, equilíbrio e acabamento sofisticado.',
     },
     {
         title: 'Luzes',

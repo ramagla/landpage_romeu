@@ -37,11 +37,11 @@ export function MobileBusinessCard() {
                         </p>
 
                         <h1 className="mt-2 font-display text-[2.75rem] font-semibold leading-[0.88] tracking-[-0.05em]">
-                            Beleza com técnica e presença.
+                            Conectado na beleza.
                         </h1>
 
                         <p className="mt-3 text-sm leading-6 text-white/65">
-                            Cabelo, maquiagem e visagismo com atendimento premium em São Paulo.
+                            Cabelo, maquiagem e visagismo com técnica, sensibilidade e atendimento personalizado.
                         </p>
                     </div>
 
@@ -169,6 +169,36 @@ export function MobileBusinessCard() {
                         </p>
                     </div>
                 </div>
+            </section>
+
+            <section id="sobre" className="border-t border-white/10 bg-[#1c1a16] px-5 py-14">
+                <article className="mx-auto max-w-sm">
+                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[#d7c19a]">
+                        Sobre Romeu Ferrazin
+                    </p>
+                    <h2 className="mt-4 font-display text-4xl font-semibold leading-[0.92] tracking-[-0.04em] text-[#f8f1e8]">
+                        Uma trajetória conectada à beleza.
+                    </h2>
+
+                    <div className="mt-7 space-y-5 text-sm leading-7 text-white/68">
+                        <p>
+                            No mercado da beleza desde 2002, Romeu Ferrazin transforma e valoriza a autoestima de suas clientes por meio dos cabelos, da maquiagem e do visagismo.
+                        </p>
+                        <p>
+                            Sua história começou ainda criança, quando desenhava e coloria os cabelos das bonecas da mãe. Aos 14 anos, conquistou uma bolsa integral em uma escola de cabeleireiros e deu início à sua trajetória profissional.
+                        </p>
+                        <p>
+                            Ao longo dos anos, aprimorou-se no Studio Wella, Escola Madre, Studio Tati Cordeiro, Studio L’Oréal, Senac e no visagismo com Philip Hallawell. Há 10 anos, atende na região de Perdizes.
+                        </p>
+                        <p>
+                            Hoje, reúne experiência em cortes, loiros e iluminados, colorimetria, tratamentos capilares, consultoria de imagem, maquiagem social e artística, além de eventos, casamentos e atendimentos a domicílio.
+                        </p>
+                    </div>
+
+                    <blockquote className="mt-8 border-l-2 border-[#d7c19a] pl-4 font-display text-2xl leading-tight text-[#f8f1e8]">
+                        “A beleza mais marcante é aquela que respeita a essência e fortalece a autoestima.”
+                    </blockquote>
+                </article>
             </section>
         </main>
     )

@@ -17,11 +17,11 @@ export function Hero() {
                     </div>
 
                     <h1 className="font-display max-w-4xl text-[3rem] font-semibold leading-[0.9] tracking-[-0.04em] md:text-8xl">
-                        Beleza com técnica, elegância e personalidade.
+                        Conectado na beleza.
                     </h1>
 
                     <p className="mt-5 max-w-2xl text-base leading-7 text-[#f8f1e8]/78 md:mt-8 md:text-lg md:leading-8">
-                        Cabelo, maquiagem e visagismo em São Paulo para realçar sua beleza com técnica, elegância e sofisticação.
+                        Romeu Ferrazin une técnica, sensibilidade estética e atendimento personalizado para valorizar a sua beleza.
                     </p>
 
                     <div className="mt-8 flex flex-col gap-4 sm:flex-row md:mt-10">
