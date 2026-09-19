@@ -209,7 +209,7 @@ export function MobileBusinessCard() {
 
             {selectedService && (
                 <div
-                    className="fixed inset-0 z-50 flex items-end bg-black/70 p-4 backdrop-blur-sm"
+                    className="fixed inset-0 z-[60] flex items-end bg-black/70 p-4 backdrop-blur-sm"
                     role="presentation"
                     onClick={() => setSelectedService(null)}
                 >
