@@ -4,7 +4,7 @@ const professionalName = import.meta.env.VITE_PROFESSIONAL_NAME || 'Romeu Ferraz
 const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5511964698679'
 const instagramUrl = import.meta.env.VITE_INSTAGRAM_URL || 'https://www.instagram.com/romeubeauty/'
 const facebookUrl = import.meta.env.VITE_FACEBOOK_URL || 'https://www.facebook.com/people/Romeu-Beauty/100081464535551/'
-const address = import.meta.env.VITE_ADDRESS || 'Rua Monte Alegre, 47, São Paulo, Brazil 05014-000'
+const address = import.meta.env.VITE_ADDRESS || 'Rua Aimberê, 641 - Perdizes, São Paulo - SP, 05018-010, Brazil'
 
 const whatsappMessage = encodeURIComponent(
     `Olá, Romeu! Vim pelo site da ${brandName} e gostaria de consultar horários disponíveis e agendar uma avaliação.`
@@ -21,7 +21,7 @@ export const siteConfig = {
     instagramUrl,
     facebookUrl,
     address,
-    shortAddress: 'Rua Monte Alegre, 47 · São Paulo · 05014-000',
+    shortAddress: 'Rua Aimberê, 641 · Perdizes · 05018-010',
     mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`,
     whatsappUrl: `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
 }

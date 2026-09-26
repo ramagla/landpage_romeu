@@ -18,7 +18,7 @@ export function Footer() {
                         Facebook
                     </a>
                     <a href={siteConfig.mapsUrl} target="_blank" rel="noreferrer" aria-label="Ver endereço da Romeu Beauty no Google Maps" onClick={() => handleCtaClick('maps_contact')} className="transition hover:text-[#d7c19a] focus:outline-none focus:ring-2 focus:ring-[#d7c19a]">
-                        Rua Monte Alegre, 47
+                        Rua Aimberê, 641
                     </a>
                 </div>
             </div>

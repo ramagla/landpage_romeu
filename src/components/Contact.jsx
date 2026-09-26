@@ -12,7 +12,7 @@ export function Contact() {
                     Viva uma experiência de beleza personalizada.
                 </h2>
                 <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-white/66">
-                    Atendimento na Rua Monte Alegre, 47, em Perdizes, São Paulo. Consulte valores e horários disponíveis diretamente pelo WhatsApp.
+                    Atendimento na Rua Aimberê, 641, em Perdizes, São Paulo. Consulte valores e horários disponíveis diretamente pelo WhatsApp.
                 </p>
 
                 <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
