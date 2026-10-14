@@ -27,19 +27,6 @@ export function trackEvent(eventName, parameters = {}) {
     window.dataLayer = window.dataLayer || []
     window.dataLayer.push(payload)
 
-    if (typeof window.gtag === 'function') {
-        const { event, ...eventParameters } = payload
-
-        if (event === 'click_whatsapp') {
-            window.gtag('event', 'conversion', {
-                send_to: 'AW-18410721657/BW3WCKySiOkcEPmi9cpE',
-                transport_type: 'beacon',
-            })
-        }
-
-        window.gtag('event', event, eventParameters)
-    }
-
     if (import.meta.env.DEV) {
         console.debug('[tracking]', payload)
     }
