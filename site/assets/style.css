@@ -304,7 +304,7 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 .result-card:nth-child(n),.gallery.is-filtered .result-card:nth-child(n){grid-column:auto;margin:0;min-width:0}
 .gallery:not(.gallery-motion) .result-card:nth-child(n) .image-open>img{aspect-ratio:4/5;object-fit:cover}
 .gallery .result-card:nth-child(n) .image-open>img{object-position:var(--portfolio-position,50% 35%)}
-.team-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start;gap:30px}
+.team-grid{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;gap:30px}
 .team-card:nth-child(n){margin:0;max-width:none}
 .team-card:nth-child(n) .team-photo{aspect-ratio:4/5}
 .professional-detail{background:#eee2e1 url('/assets/grain.svg');border-top:1px solid #60263b29}
@@ -322,11 +322,11 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 .professional-work-link{margin-top:22px}
 .team-card-glaucia .team-photo{background:#211c1a}
 .team-card-glaucia .team-photo img{object-position:50% 44%;filter:none}
-.glaucia-care-grid .care-card{position:relative;overflow:hidden;isolation:isolate;min-height:240px;background:#faf4ec}
+.professional-care-grid .care-card{position:relative;overflow:hidden;isolation:isolate;min-height:240px;background:#faf4ec}
 .care-card-visual:before{content:"";position:absolute;inset:0;background-image:var(--care-image);background-size:cover;background-position:center;opacity:.24;filter:saturate(.78) contrast(.94);transform:scale(1.035);z-index:-2}
 .care-card-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(250,244,236,.95) 3%,rgba(250,244,236,.82) 54%,rgba(250,244,236,.44) 100%);z-index:-1}
 .care-card-visual:hover:before{opacity:.34;transform:scale(1.07);transition:opacity .45s ease,transform .7s ease}
-.glaucia-care-grid ul{margin:0;padding-inline-start:1.2em;font-size:14px;line-height:1.8}
+.professional-care-grid ul{margin:0;padding-inline-start:1.2em;font-size:14px;line-height:1.8}
 .care-card-copy{position:relative;z-index:1;max-width:88%}
 .care-card-hands:before{background-position:center 45%;opacity:.13}
 .glaucia-portfolio{background:#211815;color:#f8efe5;border-top:1px solid rgba(207,176,125,.25)}
@@ -355,7 +355,7 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
  .professional-work-link{margin-top:18px}
  .team-card-glaucia .team-photo{aspect-ratio:4/5!important}
  .team-card-glaucia .team-photo img{object-position:50% 43%}
- .glaucia-care-grid .care-card{min-height:220px}
+ .professional-care-grid .care-card{min-height:220px}
  .care-card-visual:before{opacity:.20}
  .care-card-visual:after{background:linear-gradient(105deg,rgba(250,244,236,.98) 4%,rgba(250,244,236,.90) 62%,rgba(250,244,236,.65) 100%)}
  .glaucia-work-group{display:block;padding:42px 0}
@@ -408,15 +408,15 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 
 
 /* v8 — fechamento visual Gláucia */
-.glaucia-care-grid .care-card-clean{
+.professional-care-grid .care-card-clean{
   position:relative;overflow:hidden;isolation:isolate;min-height:240px;
   background:linear-gradient(135deg,#fbf3ea 0%,#f1e2d6 100%);
 }
-.glaucia-care-grid .care-card-clean:before{
+.professional-care-grid .care-card-clean:before{
   content:"";position:absolute;right:-70px;top:-115px;width:240px;height:360px;
   border:1px solid rgba(96,38,59,.16);border-radius:50%;transform:rotate(-28deg);z-index:-1;
 }
-.glaucia-care-grid .care-card-clean:after{
+.professional-care-grid .care-card-clean:after{
   content:"";position:absolute;inset:auto 22px 20px auto;width:52px;height:1px;
   background:rgba(176,141,95,.55);box-shadow:0 -7px 0 -3px rgba(176,141,95,.35);
 }
@@ -427,7 +427,7 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 }
 .glaucia-work-heading h3{max-width:210px}
 @media(max-width:700px){
-  .glaucia-care-grid .care-card-clean{min-height:210px}
+  .professional-care-grid .care-card-clean{min-height:210px}
   .glaucia-feature-real .glaucia-feature-profile:after{font-size:23px;right:12px}
 }
 
