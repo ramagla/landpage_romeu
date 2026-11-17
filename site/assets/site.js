@@ -33,14 +33,14 @@ const whatsappPanel = document.querySelector('.whatsapp-panel');
 const whatsappTopic = document.querySelector('[data-whatsapp-topic]');
 const whatsappStart = document.querySelector('[data-whatsapp-start]');
 const contactMessages = {
-  horario: 'Olá, Romeu! Vim pelo site e gostaria de combinar um horário.',
+  geral: 'Olá! Vim pelo site e gostaria de tirar uma dúvida sobre o atendimento.',
   corte: 'Olá, Romeu! Vim pelo site e gostaria de conversar sobre corte e visagismo.',
   cor: 'Olá, Romeu! Vim pelo site e gostaria de conversar sobre cor, mechas ou Gloss Express.',
-  glaucia: 'Olá! Vim pelo site e gostaria de consultar os serviços e horários com Glaucia.',
+  glaucia: 'Olá! Vim pelo site e gostaria de tirar uma dúvida sobre os serviços da Gláucia.',
   domicilio: 'Olá, Romeu! Vim pelo site e gostaria de consultar as condições do atendimento a domicílio.'
 };
 function updateContactLink() {
-  if (whatsappStart) whatsappStart.href = `https://wa.me/5511964698679?text=${encodeURIComponent(contactMessages[whatsappTopic.value] || contactMessages.horario)}`;
+  if (whatsappStart) whatsappStart.href = `https://wa.me/5511964698679?text=${encodeURIComponent(contactMessages[whatsappTopic.value] || contactMessages.geral)}`;
 }
 if (whatsappLauncher && whatsappPanel && typeof whatsappPanel.showModal === 'function') {
   whatsappLauncher.hidden = false;
