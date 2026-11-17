@@ -406,7 +406,7 @@ if ('IntersectionObserver' in window && !reduceMotion.matches) {
   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
     if (entry.isIntersecting) {entry.target.classList.add('is-visible');observer.unobserve(entry.target);}
   }), {threshold: .06, rootMargin: '0px 0px 20px 0px'});
-  document.querySelectorAll('.result-card, .service-row, .team-card, .article-card, .gloss-editorial-copy, .vision-content, .portfolio-heading h2, .film-heading h2, .people-heading h2, .intake-intro h2, .guide-heading h2').forEach(item => {
+  document.querySelectorAll('.result-card, .service-row, .team-card, .article-card, .gloss-editorial-copy, .vision-content, .portfolio-heading h2, .people-heading h2, .intake-intro h2, .guide-heading h2').forEach(item => {
     if (item.matches('.result-card') && item.closest('.page-home')) return;
     item.classList.add('reveal-ready');observer.observe(item);
   });
@@ -414,19 +414,3 @@ if ('IntersectionObserver' in window && !reduceMotion.matches) {
     if (event.matches) {observer.disconnect();document.querySelectorAll('.reveal-ready').forEach(item => item.classList.add('is-visible'));}
   });
 }
-
-// v7 Glaucia lashes result filters
-(() => {
-  const controls = document.querySelectorAll('[data-lashes-filter]');
-  const items = document.querySelectorAll('[data-lashes-category]');
-  if (!controls.length || !items.length) return;
-  controls.forEach((button) => {
-    button.addEventListener('click', () => {
-      const filter = button.dataset.lashesFilter;
-      controls.forEach((b) => b.classList.toggle('is-active', b === button));
-      items.forEach((item) => {
-        item.hidden = filter !== 'all' && item.dataset.lashesCategory !== filter;
-      });
-    });
-  });
-})();
