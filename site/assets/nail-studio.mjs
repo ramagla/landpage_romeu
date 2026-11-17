@@ -156,7 +156,7 @@ function applyOption(button, index) {
   designs[index][choice] = value;
   select(index);
   render();
-  status.textContent = button.textContent.trim() + ' aplicado em ' + fingers[index].name.toLowerCase() + '.';
+  status.textContent = 'Opção ' + button.textContent.trim().toLocaleLowerCase('pt-BR') + ' aplicada à unha do ' + fingers[index].name.toLowerCase() + '.';
 }
 
 function dropTarget(event) {
