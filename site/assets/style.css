@@ -309,10 +309,12 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 .team-card:nth-child(n) .team-photo{aspect-ratio:4/5}
 .team-photo-giovana{background:linear-gradient(145deg,#faf4ec 0%,var(--champagne) 52%,#e4d0cf 100%)}
 .professional-detail{background:#eee2e1 url('/assets/grain.svg');border-top:1px solid #60263b29}
+.professional-detail:not(:target){display:none}
+.professional-detail-back{display:inline-block;margin-bottom:24px}
 .professional-detail h2 em{color:var(--merlot)}
 .professional-detail .section-heading>p{max-width:440px}
 .professional-detail .care-card{background:#faf4ec;border-color:#60263b30}
-.professional-detail .section-bottom{margin-top:32px}
+.professional-detail .section-bottom{margin-top:32px;flex-wrap:wrap;gap:12px}
 #glaucia{scroll-margin-top:110px}
 @media(max-width:1000px){.results-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 20px}.team-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:35px 25px}}
 @media(max-width:700px){.results-grid{gap:27px 15px}.team-grid{grid-template-columns:1fr;gap:45px}.team-card:nth-child(n){margin-inline:0;max-width:100%}.professional-detail .section-heading{gap:25px}.professional-detail h2{font-size:52px}.page-inner .video-section .video-grid{width:100%;margin-right:0;padding-right:0}}
