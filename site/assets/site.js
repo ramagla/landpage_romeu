@@ -241,17 +241,15 @@ const hero = document.querySelector('.atelier-hero');
 const heroStage = document.querySelector('[data-hero-stage]');
 const vision = document.querySelector('.vision-chapter');
 const gloss = document.querySelector('.gloss-editorial');
-const motionButton = document.querySelector('[data-motion-toggle]');
 const galleryScenes = Array.from(document.querySelectorAll('.page-home [data-gallery]')).map(gallery => ({
   gallery, stage: gallery.querySelector('[data-gallery-stage]'), window: gallery.querySelector('.gallery-window'),
   track: gallery.querySelector('.results-grid'), back: gallery.querySelector('[data-gallery-back]'),
   next: gallery.querySelector('[data-gallery-next]'), count: gallery.querySelector('[data-gallery-count]'),
   cards: [], travel: 0, runway: 0, index: 0, active: false, stickyTop: 90
 }));
-let motionPaused = false;
 let frame = 0;
 const clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
-const motionEnabled = () => !reduceMotion.matches && !motionPaused;
+const motionEnabled = () => !reduceMotion.matches;
 function measureGalleries() {
   galleryScenes.forEach(scene => {
     scene.active = portraitMotion.matches && motionEnabled();
@@ -279,14 +277,6 @@ function measureGalleries() {
 function syncMotion() {
   document.documentElement.classList.toggle('motion-active', motionEnabled());
   document.documentElement.classList.toggle('motion-paused', !motionEnabled());
-  if (motionButton) {
-    motionButton.hidden = false;
-    motionButton.disabled = reduceMotion.matches;
-    motionButton.setAttribute('aria-pressed', String(!motionEnabled()));
-    motionButton.setAttribute('aria-label', reduceMotion.matches ? 'Animações reduzidas pela preferência do dispositivo' : motionPaused ? 'Ativar animações' : 'Pausar animações');
-    motionButton.querySelector('[data-motion-label]').textContent = reduceMotion.matches ? 'Movimento reduzido' : motionPaused ? 'Ativar movimento' : 'Pausar movimento';
-    motionButton.querySelector('.motion-toggle-symbol').textContent = motionEnabled() ? 'Ⅱ' : '▷';
-  }
   measureGalleries();
 }
 function moveGallery(scene, index, behavior = 'smooth') {
@@ -393,11 +383,10 @@ window.addEventListener('scroll', scheduleScroll, {passive: true});
 window.addEventListener('resize', measureGalleries, {passive: true});
 reduceMotion.addEventListener('change', syncMotion);
 portraitMotion.addEventListener('change', measureGalleries);
-motionButton?.addEventListener('click', () => {motionPaused = !motionPaused;syncMotion();});
 document.fonts.ready.then(measureGalleries);
 syncMotion();paintScroll();
-// Only visible primary actions run the light sweep. The global motion control
-// and the visitor's reduced-motion preference also pause this effect.
+// Only visible primary actions run the light sweep.
+// The reduced-motion preference disables the effect.
 if ('IntersectionObserver' in window) {
   const ctaObserver = new IntersectionObserver(entries => entries.forEach(entry => {
     entry.target.classList.toggle('cta-in-view', entry.isIntersecting);
