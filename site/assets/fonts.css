@@ -62,3 +62,11 @@
   font-display: swap;
   src: url(/assets/fonts/body-3.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/assets/fonts/playfair-display-700-latin.woff2) format("woff2");
+}

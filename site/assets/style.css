@@ -675,8 +675,12 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 }
 
 
-/* Credito autoral discreto, marca oficial da Status, sem âncora SEO otimizada */
-.footer-bottom{flex-wrap:wrap;align-items:center;gap:12px 22px}.footer-agency-credit{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:10px;color:var(--muted)}.footer-agency-credit a{display:inline-flex;align-items:center;line-height:1;opacity:.9;transition:opacity .2s ease}.footer-agency-credit a:hover{opacity:1}.footer-agency-credit img{display:block;width:134px;height:auto;max-height:42px;object-fit:contain}@media(max-width:640px){.footer-bottom{justify-content:center;text-align:center}.footer-agency-credit{flex-basis:100%;justify-content:center}.footer-agency-credit img{width:124px}}
+.footer-bottom{flex-wrap:wrap;align-items:center;gap:12px 22px}
+.footer-developer-credit{display:inline-grid;justify-items:center;gap:4px;padding:5px 0;font-size:11px;line-height:1.25;color:var(--muted)}
+.footer-mimo-brand{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.25rem;letter-spacing:-.05em;line-height:1;color:#1b1717}
+.footer-mimo-brand>span{color:#810100}
+.footer-developer-credit:hover,.footer-developer-credit:focus-visible{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:640px){.footer-bottom{justify-content:center;text-align:center}.footer-developer-credit{flex-basis:100%}}
 
 .main-nav .nav-client-link{white-space:nowrap}
 .client-id{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,72px);align-items:start}
