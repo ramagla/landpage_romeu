@@ -94,7 +94,7 @@
   pointer-events: none;
   font: 600 13px var(--sans);
 }
-.lash-stage { min-height: 230px; width: 100%; }
+.lash-stage { width: 100%; }
 .lash-placeholder { display: grid; min-height: 230px; place-content: center; padding: 28px; text-align: center; }
 .lash-placeholder p { max-width: 300px; margin: 0; }
 .lash-stage.is-calibrating canvas { cursor: crosshair; touch-action: manipulation; }
@@ -106,7 +106,7 @@
   .beauty-tool .tool-layout { grid-template-columns: minmax(0, 1fr); padding-bottom: 52px; }
   .tool-chip { padding-inline: 10px; }
 }
-.nail-stage, .lash-stage {
+.nail-stage {
   position: sticky;
   top: 96px;
   z-index: 2;
@@ -114,9 +114,20 @@
   margin-inline: auto;
 }
 @media (max-width: 760px) {
-  .nail-stage, .lash-stage { top: 76px; max-width: min(100%, 310px, 43svh); }
+  .nail-stage { top: 76px; max-width: min(100%, 310px, 43svh); }
 }
 .lash-camera-button { display: none; }
 @media (pointer: coarse) {
   .lash-camera-button { display: inline-flex; }
+}
+.beauty-tool .lash-controls { grid-template-areas: "preview setup" "preview options"; row-gap: 24px; }
+.lash-setup { grid-area: setup; }
+.lash-options { grid-area: options; }
+.lash-view { grid-area: preview; align-self: start; position: sticky; top: 96px; display: grid; gap: 10px; width: 100%; }
+.lash-stage { max-width: min(100%, 54svh); margin-inline: auto; }
+.lash-view-actions { justify-content: center; }
+@media (max-width: 760px) {
+  .beauty-tool .lash-controls { grid-template-areas: "setup" "preview" "options"; }
+  .lash-view { position: static; }
+  .lash-stage { max-width: min(100%, 385px); }
 }

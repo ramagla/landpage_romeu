@@ -1,11 +1,11 @@
 import {photoFromFile, saveCanvas, togglePressed} from './beauty-tools.mjs';
 
 const styles = {
-  classico: {density:18, fan:1, length:.132, line:.009, text:'Efeito mais leve, com fios espaçados e comprimento equilibrado.'},
-  brasileiro: {density:22, fan:2, length:.153, line:.010, text:'Volume intermediário, com mais definição ao longo dos olhos.'},
-  egipcio: {density:24, fan:3, length:.163, line:.011, text:'Efeito mais preenchido, com fios agrupados distribuídos pelo olhar.'},
-  fox: {density:23, fan:2, length:.181, line:.011, outer:true, text:'Fios mais longos nos cantos externos para alongar o olhar.'},
-  mega: {density:29, fan:3, length:.185, line:.013, text:'O efeito mais intenso da prévia, com maior densidade e contraste.'},
+  classico: {density:16, fan:1, length:.21, line:.014, band:.009, text:'Efeito mais leve, com fios espaçados e comprimento equilibrado.'},
+  brasileiro: {density:21, fan:2, length:.25, line:.017, band:.015, text:'Volume intermediário, com mais definição ao longo dos olhos.'},
+  egipcio: {density:22, fan:3, length:.28, line:.017, band:.018, cluster:true, text:'Efeito mais preenchido, com fios agrupados distribuídos pelo olhar.'},
+  fox: {density:21, fan:2, length:.34, line:.018, band:.017, outer:true, text:'Fios mais longos nos cantos externos para alongar o olhar.'},
+  mega: {density:25, fan:3, length:.33, line:.019, band:.024, text:'O efeito mais intenso da prévia, com maior densidade e contraste.'},
 };
 const upperLids = [
   [33,246,161,160,159,158,157,173,133],
@@ -27,12 +27,15 @@ const status = tool.querySelector('[data-tool-status]');
 const stylesButtons = [...tool.querySelectorAll('[data-lash-style]')];
 const adjust = tool.querySelector('[data-adjust-eyes]');
 const compare = tool.querySelector('[data-compare-lashes]');
+const zoom = tool.querySelector('[data-zoom-lashes]');
 const save = tool.querySelector('[data-save-lashes]');
 const clear = tool.querySelector('[data-clear-photo]');
 let detector;
 let generation = 0;
 let photoLoaded = false;
 let frame;
+let faceView;
+let zoomed = false;
 let eyes = [];
 let manual = null;
 let style = 'classico';
@@ -77,9 +80,20 @@ function drawLashes(points, settings, side) {
   const ty = (end.y - start.y) / width;
   const nx = ty;
   const ny = -tx;
-  const ink = '#2a181b';
+  const ink = '#211217';
   context.save();
   context.lineCap = 'round';
+  context.lineJoin = 'round';
+  context.strokeStyle = ink + 'b5';
+  context.lineWidth = Math.max(.65, width * settings.band);
+  context.beginPath();
+  points.slice(1, -1).forEach((point, index) => {
+    const x = point.x + nx * width * .015;
+    const y = point.y + ny * width * .015;
+    if (index === 0) context.moveTo(x, y);
+    else context.lineTo(x, y);
+  });
+  context.stroke();
 
   for (let i = 1; i <= settings.density; i++) {
     const t = i / (settings.density + 1);
@@ -91,23 +105,28 @@ function drawLashes(points, settings, side) {
     const b = points[lower + 1];
     const x = a.x + (b.x - a.x) * mix + nx * width * .009;
     const y = a.y + (b.y - a.y) * mix + ny * width * .009;
-    const profile = settings.outer ? .35 + .65 * outer : .42 + .58 * Math.sin(Math.PI * t) ** .58;
-    const length = width * settings.length * profile * (1 + ((i * 7 % 11) - 5) / 57);
+    const profile = settings.outer ? .27 + .73 * outer ** 1.55 : .38 + .62 * Math.sin(Math.PI * t) ** .58;
+    const texture = settings.cluster ? (i % 3 === 0 ? 1.15 : .81) : 1 + ((i * 7 % 11) - 5) / 37;
+    const length = width * settings.length * profile * texture;
 
     for (let strand = 0; strand < settings.fan; strand++) {
-      const spread = (strand - (settings.fan - 1) / 2) * length * .27;
-      const lean = (side === 0 ? -1 : 1) * length * (.17 + outer * .33) + spread;
+      const spread = (strand - (settings.fan - 1) / 2) * length * .38;
+      const lean = (side === 0 ? -1 : 1) * length * (.22 + outer * (settings.outer ? .65 : .37)) + spread;
       const tipX = x + nx * length + tx * lean;
       const tipY = y + ny * length + ty * lean;
       const gradient = context.createLinearGradient(x, y, tipX, tipY);
-      gradient.addColorStop(0, ink + 'e8');
-      gradient.addColorStop(.65, ink + 'd0');
-      gradient.addColorStop(1, ink + '1a');
+      gradient.addColorStop(0, ink + 'ef');
+      gradient.addColorStop(.59, ink + 'bf');
+      gradient.addColorStop(1, ink + '25');
       context.strokeStyle = gradient;
       context.lineWidth = Math.max(.65, width * settings.line * (strand === 0 ? 1 : .8));
       context.beginPath();
       context.moveTo(x, y);
-      context.quadraticCurveTo(x + nx * length * .56, y + ny * length * .56, tipX, tipY);
+      context.bezierCurveTo(
+        x + nx * length * .40, y + ny * length * .40,
+        tipX - tx * lean * .18 - nx * length * .25, tipY - ty * lean * .18 - ny * length * .25,
+        tipX, tipY,
+      );
       context.stroke();
     }
   }
@@ -128,6 +147,23 @@ function setFrame(x, y, width, height) {
 function frameFace(x, y, desiredSize) {
   const size = Math.min(base.width, base.height, Math.max(1, Math.round(desiredSize)));
   setFrame(x - size / 2, y - size / 2, size, size);
+  faceView = {...frame};
+  zoomed = false;
+}
+
+function zoomEyes(enabled) {
+  if (enabled) {
+    const left = eyes[0][0];
+    const right = eyes[1].at(-1);
+    const span = Math.max(1,right.x - left.x);
+    const width = Math.min(base.width,Math.max(1,Math.round(span * 1.48)));
+    const height = Math.min(base.height,Math.max(1,Math.round(width * .55)));
+    setFrame((left.x + right.x - width) / 2,(left.y + right.y - height) / 2 - span * .09,width,height);
+  } else {
+    setFrame(faceView.x,faceView.y,faceView.width,faceView.height);
+  }
+  zoomed = enabled;
+  render();
 }
 
 function render(showOriginal = original) {
@@ -150,12 +186,15 @@ function render(showOriginal = original) {
   context.restore();
   compare.textContent = original ? 'Ver simulação' : 'Ver foto original';
   compare.setAttribute('aria-pressed', String(original));
+  zoom.textContent = zoomed ? 'Ver rosto todo' : 'Ampliar olhos';
+  zoom.setAttribute('aria-pressed', String(zoomed));
 }
 
 function setActions(detecting = false) {
   adjust.disabled = !photoLoaded || detecting;
   compare.disabled = !eyes.length || detecting || Boolean(manual);
   save.disabled = compare.disabled;
+  zoom.disabled = compare.disabled;
   clear.disabled = !photoLoaded && !detecting;
 }
 
@@ -174,7 +213,7 @@ function beginManual(message = '') {
   status.textContent = (message ? message + ' ' : '') + 'Marque ' + anchors[0].label + '.';
   setActions();
   render();
-  canvas.focus({preventScroll:true});
+  canvas.focus();
 }
 
 function markPoint(point) {
@@ -208,6 +247,8 @@ function removePhoto() {
   eyes = [];
   manual = null;
   photoLoaded = false;
+  faceView = undefined;
+  zoomed = false;
   original = false;
   base.width = base.height = 1;
   canvas.width = canvas.height = 1;
@@ -320,6 +361,7 @@ canvas.addEventListener('keydown', event => {
 });
 adjust.addEventListener('click', () => beginManual());
 compare.addEventListener('click', () => { original = !original; render(); });
+zoom.addEventListener('click', () => zoomEyes(!zoomed));
 clear.addEventListener('click', () => {
   removePhoto();
   status.textContent = 'Foto removida da simulação.';
