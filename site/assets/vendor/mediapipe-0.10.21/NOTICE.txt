@@ -1,0 +1,9 @@
+MediaPipe Tasks Vision 0.10.21
+https://www.npmjs.com/package/@mediapipe/tasks-vision/v/0.10.21
+
+Face Landmarker float16 model, version 1
+https://developers.google.com/edge/mediapipe/solutions/vision/face_landmarker
+https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task
+
+The bundled SDK and the unmodified model are used for local eye landmark detection.
+See LICENSE.txt for the Apache License, Version 2.0.

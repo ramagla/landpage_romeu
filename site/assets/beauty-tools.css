@@ -1,0 +1,122 @@
+.beauty-tool {
+  --tool-paper: #f6eee5;
+  --tool-border: #60263b28;
+  --tool-wine: #60263b;
+}
+.beauty-tool .page-intro { margin-bottom: 0; }
+.beauty-tool .page-intro h1 { font-size: clamp(48px, 7vw, 92px); }
+.beauty-tool .tool-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .92fr);
+  gap: clamp(20px, 4vw, 56px);
+  align-items: start;
+  padding-block: 26px 72px;
+}
+.beauty-tool [hidden] { display: none !important; }
+.tool-stage {
+  position: relative;
+  overflow: hidden;
+  background: #eadfd2;
+  border: 1px solid var(--tool-border);
+  border-radius: 12px;
+}
+.tool-stage canvas { display: block; width: 100%; height: auto; }
+.tool-panel { display: grid; gap: 18px; }
+.tool-panel h2 { margin: 0; font-size: clamp(32px, 4vw, 46px); line-height: 1.03; }
+.tool-panel p, .tool-note { font-size: 14px; line-height: 1.6; }
+.tool-panel p, .tool-note { margin: 0; }
+.tool-panel fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.tool-panel legend { margin-bottom: 8px; font-weight: 700; color: var(--ink); }
+.tool-options, .tool-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.tool-chip, .tool-chip:link, .tool-chip:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #60263b46;
+  border-radius: 6px;
+  background: var(--tool-paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.15;
+  cursor: pointer;
+}
+.tool-chip[aria-pressed="true"] { background: var(--tool-wine); color: #fff8ef; border-color: var(--tool-wine); }
+.tool-chip:focus-visible, .nail-target:focus-visible, .tool-stage:focus-visible {
+  outline: 2px solid var(--tool-wine);
+  outline-offset: 3px;
+}
+.tool-chip:disabled, .tool-actions .button:disabled { cursor: not-allowed; opacity: .55; }
+.tool-chip[data-choice] { touch-action: none; user-select: none; }
+.tool-options .nail-swatch {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  border: 1px solid #392a2448;
+  border-radius: 50%;
+  background: var(--swatch);
+}
+.nail-stage { aspect-ratio: 4 / 5; }
+.nail-target {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  min-width: 42px;
+  min-height: 42px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: #fffaf0;
+  cursor: pointer;
+}
+.nail-target[aria-pressed="true"], .nail-stage.is-dragging .nail-target {
+  border-color: #fffaf0;
+  box-shadow: 0 0 0 1px #60263baa;
+}
+.nail-target.is-drop-target { background: #fffaf044; box-shadow: 0 0 0 2px var(--tool-wine); }
+.tool-drag-ghost {
+  position: fixed;
+  z-index: 1200;
+  transform: translate(-50%, calc(-100% - 12px));
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #60263b;
+  color: #fff8ef;
+  pointer-events: none;
+  font: 600 13px var(--sans);
+}
+.lash-stage { min-height: 230px; width: 100%; }
+.lash-placeholder { display: grid; min-height: 230px; place-content: center; padding: 28px; text-align: center; }
+.lash-placeholder p { max-width: 300px; margin: 0; }
+.lash-stage.is-calibrating canvas { cursor: crosshair; touch-action: manipulation; }
+.lash-controls[aria-busy="true"] { cursor: progress; }
+.lash-effect-description { min-height: 2.25em; }
+.tool-status { min-height: 1.5em; font-size: 13px; color: var(--tool-wine); }
+.tool-actions .button { min-height: 44px; }
+@media (max-width: 760px) {
+  .beauty-tool .tool-layout { grid-template-columns: minmax(0, 1fr); padding-bottom: 52px; }
+  .tool-chip { padding-inline: 10px; }
+}
+.nail-stage, .lash-stage {
+  position: sticky;
+  top: 96px;
+  z-index: 2;
+  max-width: min(100%, 56svh);
+  margin-inline: auto;
+}
+@media (max-width: 760px) {
+  .nail-stage, .lash-stage { top: 76px; max-width: min(100%, 310px, 43svh); }
+}
+.lash-camera-button { display: none; }
+@media (pointer: coarse) {
+  .lash-camera-button { display: inline-flex; }
+}

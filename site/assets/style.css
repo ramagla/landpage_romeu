@@ -694,3 +694,9 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 .client-id-guide ol{margin:0;padding-inline-start:1.3em;line-height:1.7}
 .client-id-guide li+li{margin-top:10px}
 @media(max-width:760px){.client-id{grid-template-columns:1fr}}
+.professional-tool-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.professional-tool-links .professional-work-link + .professional-work-link { margin-top: 4px; }
