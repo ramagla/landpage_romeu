@@ -1,119 +1,13 @@
-# Romeu Beauty - Landing Page
+# Romeu Beauty
 
-Landing page profissional da Romeu Beauty / Romeu Ferrazin, desenvolvida com React, Vite e Tailwind CSS para apresentar serviços de cabelo, maquiagem, mechas, colorimetria, mega hair e visagismo em São Paulo.
+Site institucional da Romeu Beauty em Perdizes, São Paulo, com páginas de serviços, profissionais, resultados e blog.
 
-URL pública oficial: https://www.romeuferrazin.com.br
+O diretório `site/` contém as páginas HTML, os estilos, o JavaScript e a mídia da versão publicada incluída no backup de 17/11/2026.
 
-## Tecnologias
+## Prévia local
 
-- React
-- Vite
-- Tailwind CSS
-- Vercel
-- Vercel Analytics
+Na raiz do repositório, execute `python -m http.server 8000 --bind 127.0.0.1 --directory site` e abra <http://127.0.0.1:8000/>.
 
-## Variáveis de ambiente
+## Publicação
 
-As variáveis abaixo podem ser configuradas na Vercel em todos os ambientes. O projeto possui fallbacks seguros em `src/config/site.js`.
-
-```env
-VITE_SITE_URL=https://www.romeuferrazin.com.br
-VITE_BRAND_NAME=Romeu Beauty
-VITE_PROFESSIONAL_NAME=Romeu Ferrazin
-VITE_WHATSAPP_NUMBER=5511964698679
-VITE_INSTAGRAM_URL=https://www.instagram.com/romeubeauty/
-VITE_FACEBOOK_URL=https://www.facebook.com/people/Romeu-Beauty/100081464535551/
-VITE_ADDRESS=Rua Monte Alegre, 47, São Paulo, Brazil 05014-000
-```
-
-## Como rodar localmente
-
-```bash
-npm install
-npm run dev
-```
-
-## Validações
-
-```bash
-npm run lint
-npm run build
-npm run preview
-```
-
-Observação: as versões atuais de Vite, Rolldown e ESLint exigem Node 20.19+ ou Node 22.12+. Use uma versão compatível para build local.
-
-## Estrutura básica
-
-```text
-src/
-  components/
-    About.jsx
-    Contact.jsx
-    Education.jsx
-    FloatingWhatsApp.jsx
-    Footer.jsx
-    Header.jsx
-    Hero.jsx
-    Portfolio.jsx
-    SafeImage.jsx
-    Services.jsx
-    WhatsAppButton.jsx
-    WhatsAppIcon.jsx
-    WhyChoose.jsx
-  config/
-    site.js
-  utils/
-    tracking.js
-  App.jsx
-  index.css
-  main.jsx
-public/
-  images/
-  robots.txt
-  sitemap.xml
-```
-
-## SEO
-
-O projeto inclui metadados técnicos no `index.html`, Open Graph, Twitter Card, canonical, robots, sitemap e JSON-LD do tipo `BeautySalon` com informações confirmadas do negócio.
-
-- Sitemap: https://www.romeuferrazin.com.br/sitemap.xml
-- Robots: https://www.romeuferrazin.com.br/robots.txt
-- Imagem OG atual: `https://www.romeuferrazin.com.br/images/romeu-principal.jpg`
-
-Caso uma imagem social dedicada seja criada futuramente, ela pode ser publicada como `public/og-image.jpg` e os metadados devem ser atualizados para `https://www.romeuferrazin.com.br/og-image.jpg`.
-
-## Analytics
-
-O Vercel Analytics está implementado com `@vercel/analytics/react` e renderizado no app. Web Analytics também deve permanecer ativado no painel da Vercel.
-
-Speed Insights não foi implementado porque está pendente por limite do plano Hobby.
-
-## Tracking futuro
-
-Os principais CTAs chamam `handleCtaClick` em `src/utils/tracking.js`. Hoje a função apenas registra eventos no console em desenvolvimento, sem Google Analytics, Meta Pixel ou ferramentas externas adicionais.
-
-Eventos preparados:
-
-- `whatsapp_hero`
-- `whatsapp_services`
-- `whatsapp_contact`
-- `instagram_header`
-- `instagram_portfolio`
-- `maps_contact`
-
-## Checklist antes de publicar
-
-- Rodar `npm install`
-- Rodar `npm run lint`
-- Rodar `npm run build`
-- Conferir desktop e mobile
-- Testar WhatsApp, Instagram, Facebook e Maps
-- Validar se `robots.txt` e `sitemap.xml` estão acessíveis
-- Confirmar se o painel da Vercel Analytics está ativo
-- Não fazer deploy manual pela CLI
-
-## Domínio
-
-O deploy continua hospedado na Vercel, mas o domínio público oficial é `https://www.romeuferrazin.com.br`. Se houver troca futura de domínio, atualizar `VITE_SITE_URL`, `index.html`, `robots.txt`, `sitemap.xml` e metadados sociais.
+A Vercel serve diretamente o diretório `site/`. O `vercel.json` mantém o redirecionamento do domínio antigo e configura as rotas com barra final. O endereço canônico é <https://romeubeauty.com.br/>.
