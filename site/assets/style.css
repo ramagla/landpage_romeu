@@ -307,6 +307,7 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 .team-grid{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;gap:30px}
 .team-card:nth-child(n){margin:0;max-width:none}
 .team-card:nth-child(n) .team-photo{aspect-ratio:4/5}
+.team-photo-giovana{background:linear-gradient(145deg,#faf4ec 0%,var(--champagne) 52%,#e4d0cf 100%)}
 .professional-detail{background:#eee2e1 url('/assets/grain.svg');border-top:1px solid #60263b29}
 .professional-detail h2 em{color:var(--merlot)}
 .professional-detail .section-heading>p{max-width:440px}
