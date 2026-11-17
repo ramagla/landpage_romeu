@@ -437,17 +437,17 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 
 
 /* v12 — formação Gláucia + portfólio expandido */
-.glaucia-education-card{margin-top:22px;padding:18px 18px 16px;background:linear-gradient(135deg,#efe2d3,#e7d5c1);border:1px solid rgba(111,67,49,.16);box-shadow:8px 10px 0 rgba(176,141,95,.09)}
-.glaucia-education-card>span{display:block;text-transform:uppercase;letter-spacing:.15em;font-size:9px;color:var(--bronze);font-weight:700;margin-bottom:13px}
-.glaucia-education-card>div{padding:11px 0;border-top:1px solid rgba(111,67,49,.14)}
-.glaucia-education-card strong{display:block;font-family:var(--serif);font-size:18px;font-weight:500;color:var(--ink);line-height:1.15}
-.glaucia-education-card small{display:block;margin-top:4px;font-size:10px;line-height:1.6;color:#6e5c50}
-.glaucia-education-card em{display:block;margin-top:5px;font-style:normal;font-size:9px;line-height:1.65;text-transform:uppercase;letter-spacing:.06em;color:#7e4b5e}
+.professional-education-card{margin-top:22px;padding:18px 18px 16px;background:linear-gradient(135deg,#efe2d3,#e7d5c1);border:1px solid rgba(111,67,49,.16);box-shadow:8px 10px 0 rgba(176,141,95,.09)}
+.professional-education-card>span{display:block;text-transform:uppercase;letter-spacing:.15em;font-size:9px;color:var(--bronze);font-weight:700;margin-bottom:13px}
+.professional-education-card>div{padding:11px 0;border-top:1px solid rgba(111,67,49,.14)}
+.professional-education-card strong{display:block;font-family:var(--serif);font-size:18px;font-weight:500;color:var(--ink);line-height:1.15}
+.professional-education-card small{display:block;margin-top:4px;font-size:10px;line-height:1.6;color:#6e5c50}
+.professional-education-card em{display:block;margin-top:5px;font-style:normal;font-size:9px;line-height:1.65;text-transform:uppercase;letter-spacing:.06em;color:#7e4b5e}
 .glaucia-feature-results{grid-template-columns:repeat(3,minmax(0,1fr))}
 .glaucia-work-grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:700px){
- .glaucia-education-card{padding:16px;margin-top:18px}
- .glaucia-education-card strong{font-size:19px}
+ .professional-education-card{padding:16px;margin-top:18px}
+ .professional-education-card strong{font-size:19px}
  .glaucia-feature-results,.glaucia-work-grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
  .glaucia-feature-results .glaucia-before-after{grid-column:1/-1}
 }
