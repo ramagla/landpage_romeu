@@ -308,8 +308,7 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 @media(min-width:1250px){.team-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:24px}}
 .team-card:nth-child(n){margin:0;max-width:none}
 .team-card:nth-child(n) .team-photo{aspect-ratio:4/5}
-.team-photo-giovana{background:linear-gradient(145deg,#faf4ec 0%,var(--champagne) 52%,#e4d0cf 100%)}
-.team-photo-marla img{object-position:50% 0}
+.team-photo-cutout{background:linear-gradient(145deg,#faf4ec 0%,var(--champagne) 52%,#e4d0cf 100%)}
 .professional-detail{background:#eee2e1 url('/assets/grain.svg');border-top:1px solid #60263b29}
 .professional-detail:not(:target){display:none}
 .professional-detail-back{display:inline-block;margin-bottom:24px}
@@ -325,7 +324,6 @@ body{background-color:var(--paper);background-image:url('/assets/grain.svg');bac
 
 /* v7 — Gláucia: foto aprovada, watermarks por serviço e portfólio categorizado */
 .professional-work-link{margin-top:22px}
-.team-card-glaucia .team-photo{background:#211c1a}
 .team-card-glaucia .team-photo img{object-position:50% 44%;filter:none}
 .professional-care-grid .care-card{position:relative;overflow:hidden;isolation:isolate;min-height:240px;background:#faf4ec}
 .care-card-visual:before{content:"";position:absolute;inset:0;background-image:var(--care-image);background-size:cover;background-position:center;opacity:.24;filter:saturate(.78) contrast(.94);transform:scale(1.035);z-index:-2}
