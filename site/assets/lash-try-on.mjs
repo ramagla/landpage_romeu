@@ -6,7 +6,7 @@ const styles = {
   brasileiro: {density:22, fan:2, length:.30, thickness:.010, spread:.15, curl:'c', map:[.25,.57,.81,.95,1,.87,.48], text:'Fios em Y, com um volume leve e mais aberto na metade externa.'},
   egipcio: {density:24, fan:3, length:.35, thickness:.009, spread:.27, centerFiber:true, curl:'d', map:[.25,.57,.88,1,.93,.79,.42], text:'Leques em W com fios centrais mais longos e maior preenchimento no centro do olhar.'},
   fox: {density:25, fan:2, length:.36, thickness:.010, spread:.14, curl:'l', map:[.26,.43,.61,.77,.94,1,.71], sweep:.32, text:'Comprimento concentrado perto do canto externo, com uma transição mais curta na extremidade.'},
-  mega: {density:30, fan:5, length:.36, thickness:.008, spread:.25, curl:'d', map:[.42,.68,.91,1,1,.91,.53], text:'Leques finos e densos para um acabamento de maior volume.'},
+  mega: {density:39, fan:8, length:.48, thickness:.0068, spread:.10, layered:true, curl:'d', map:[.44,.68,.89,1,1,.92,.59], text:'Duas camadas de leques finos, com raiz preenchida e pontas longas e leves.'},
 };
 
 const curls = {
@@ -101,6 +101,51 @@ function spline(a, b, c, d, f) {
     + (3 * b - a - 3 * c + d) * f * f * f);
 }
 
+// MediaPipe follows the lid contour. Refine its position against the nearby
+// dark lash root, keeping the search away from the brow and lower eyelid.
+function alignToLashLine(eye, pixels) {
+  const first = eye[0];
+  const last = eye.at(-1);
+  const width = Math.hypot(last.x - first.x, last.y - first.y);
+  const nx = (last.y - first.y) / width;
+  const ny = -(last.x - first.x) / width;
+  const radius = Math.round(Math.min(7, width * .037));
+  if (radius < 2) return eye;
+
+  const luma = (x, y) => {
+    const col = Math.max(0, Math.min(pixels.width - 1, Math.round(x)));
+    const row = Math.max(0, Math.min(pixels.height - 1, Math.round(y)));
+    const i = (row * pixels.width + col) * 4;
+    return pixels.data[i] * .21 + pixels.data[i + 1] * .72 + pixels.data[i + 2] * .07;
+  };
+  const offsets = eye.map(({x,y}, index) => {
+    if (index === 0 || index === eye.length - 1) return 0;
+    const search = Math.max(1, radius - 1);
+    const span = Math.max(2, Math.round(width * .022));
+    let best = 0;
+    let bestScore = -Infinity;
+    for (let offset = -search; offset <= search; offset++) {
+      let score = 0;
+      for (const tangent of [-span,0,span]) {
+        const px = x - ny * tangent + nx * offset;
+        const py = y + nx * tangent + ny * offset;
+        const root = luma(px, py);
+        const upper = luma(px + nx * span, py + ny * span);
+        const lower = luma(px - nx * span, py - ny * span);
+        score += upper * .65 + lower * .35 - root;
+      }
+      score = score / 3 - Math.abs(offset) * 2;
+      if (score > bestScore) { bestScore = score; best = offset; }
+    }
+    return bestScore >= 5 ? best : 0;
+  });
+  return eye.map((point,index) => {
+    if (index === 0 || index === eye.length - 1) return point;
+    const shift = (offsets[index - 1] + offsets[index] * 2 + offsets[index + 1]) / 4;
+    return {x:point.x + nx * shift, y:point.y + ny * shift};
+  });
+}
+
 function drawFiber(root, normal, across, length, lean, thickness, shape, alpha) {
   const {x, y} = root;
   const offset = (lift, sweep) => [
@@ -114,13 +159,14 @@ function drawFiber(root, normal, across, length, lean, thickness, shape, alpha) 
   const edgeY = across.y * thickness / 2;
   const gradient = context.createLinearGradient(x, y, tipX, tipY);
   gradient.addColorStop(0, `rgba(32,22,25,${alpha})`);
-  gradient.addColorStop(.63, `rgba(32,22,25,${alpha * .84})`);
-  gradient.addColorStop(1, 'rgba(32,22,25,.17)');
+  gradient.addColorStop(.28, `rgba(32,22,25,${alpha * .90})`);
+  gradient.addColorStop(.65, `rgba(32,22,25,${alpha * .53})`);
+  gradient.addColorStop(1, 'rgba(32,22,25,.08)');
   context.fillStyle = gradient;
   context.beginPath();
   context.moveTo(x - edgeX, y - edgeY);
-  context.bezierCurveTo(firstX - edgeX, firstY - edgeY, lastX - edgeX * .35, lastY - edgeY * .35, tipX, tipY);
-  context.bezierCurveTo(lastX + edgeX * .35, lastY + edgeY * .35, firstX + edgeX, firstY + edgeY, x + edgeX, y + edgeY);
+  context.bezierCurveTo(firstX - edgeX * .72, firstY - edgeY * .72, lastX - edgeX * .23, lastY - edgeY * .23, tipX, tipY);
+  context.bezierCurveTo(lastX + edgeX * .23, lastY + edgeY * .23, firstX + edgeX * .72, firstY + edgeY * .72, x + edgeX, y + edgeY);
   context.fill();
 }
 
@@ -134,10 +180,19 @@ function drawLashes(samples, settings, side) {
   const across = {x:axis.x * outward, y:axis.y * outward};
   const shape = curls[curl === 'auto' ? settings.curl : curl];
 
-  // Distribute roots by arc length, so irregular landmark spacing does not bunch up the fibers.
+  // Stagger a shorter underlayer so the Mega Volume fills the original
+  // lash line while the longer fans remain individually visible at the tips.
+  const layers = settings.layered
+    ? [{scale:.57, shift:-.002, stagger:.14, alpha:.82}, {scale:1, shift:.008, stagger:-.14, alpha:.86}]
+    : [{scale:1, shift:.003, stagger:0, alpha:settings.fan === 1 ? .92 : .82}];
+  for (const layer of layers) drawFans(samples, settings, layer, axis, across, width, side, shape);
+}
+
+function drawFans(samples, settings, layer, axis, across, width, side, shape) {
+  const end = samples.at(-1);
   let segment = 1;
   for (let i = 0; i < settings.density; i++) {
-    const t = .065 + .885 * (i + .5 + Math.sin(i * 17.3) * .22) / settings.density;
+    const t = .048 + .92 * (i + .5 + layer.stagger + Math.sin(i * 17.3) * .24) / settings.density;
     const arc = end.distance * t;
     while (samples[segment].distance < arc) segment++;
     const a = samples[segment - 1];
@@ -148,23 +203,24 @@ function drawLashes(samples, settings, side) {
     const norm = Math.hypot(normalX, normalY);
     const normal = {x:normalX / norm, y:normalY / norm};
     const root = {
-      x:interpolate(a.x, b.x, mix) + normal.x * width * .006,
-      y:interpolate(a.y, b.y, mix) + normal.y * width * .006,
+      x:interpolate(a.x, b.x, mix) + normal.x * width * layer.shift,
+      y:interpolate(a.y, b.y, mix) + normal.y * width * layer.shift,
     };
     const outer = side === 0 ? 1 - t : t;
     const zone = outer * (settings.map.length - 1);
     const index = Math.floor(zone);
     const envelope = interpolate(settings.map[index], settings.map[index + 1], zone - index);
     const texture = 1 + Math.sin(i * 13.7 + side * .37) * .14;
-    const length = width * settings.length * envelope * texture;
+    const length = width * settings.length * envelope * texture * layer.scale;
     const lean = -.44 + outer * (.64 + (settings.sweep || 0)) + Math.sin(i * 6.2 + side) * .07;
 
     for (let strand = 0; strand < settings.fan; strand++) {
       const spread = (strand - (settings.fan - 1) / 2) * settings.spread;
       const taper = settings.centerFiber && strand !== 1 ? .82 : 1;
-      const strandLength = length * taper * (1 - Math.abs(spread) * .28);
+      const variation = settings.layered ? 1 + Math.sin(i * 1.8 + strand * 3.4) * .11 : 1;
+      const strandLength = length * taper * variation * (1 - Math.abs(spread) * .28);
       drawFiber(root, normal, across, strandLength, lean + spread,
-        Math.max(.58, width * settings.thickness), shape, settings.fan === 1 ? .92 : .80);
+        Math.max(.47, width * settings.thickness), shape, layer.alpha);
     }
   }
 }
@@ -337,10 +393,11 @@ async function load(file) {
         return;
       }
       const landmarks = faceLandmarks[0];
+      const pixels = base.getContext('2d').getImageData(0, 0, base.width, base.height);
       eyes = upperLids.map(lid => lid.map(index => ({
         x:landmarks[index].x * base.width,
         y:landmarks[index].y * base.height,
-      })));
+      }))).map(eye => alignToLashLine(eye, pixels));
       lidPaths = eyes.map(smoothLid);
       const [forehead, chin] = [landmarks[10], landmarks[152]];
       const faceWidth = Math.abs(landmarks[454].x - landmarks[234].x) * base.width;
