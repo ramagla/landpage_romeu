@@ -4,7 +4,7 @@
     <link rel="canonical" href="https://romeubeauty.com.br/simulador-de-cilios/"><link rel="icon" href="/assets/images/romeu-beauty-logo.webp" type="image/webp">
     <meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="Romeu Beauty"><meta property="og:title" content="Simulador de Cílios da Gláucia | Romeu Beauty"><meta property="og:description" content="Compare cinco estilos de alongamento em uma foto sua."><meta property="og:url" content="https://romeubeauty.com.br/simulador-de-cilios/"><meta property="og:image" content="https://romeubeauty.com.br/assets/images/romeu-beauty-logo.webp">
     <link rel="stylesheet" href="/assets/fonts.css"><link rel="stylesheet" href="/assets/style.css?v=13"><script type="application/ld+json">[{"@context": "https://schema.org", "@type": "HairSalon", "@id": "https://romeubeauty.com.br/#salao", "name": "Romeu Beauty", "url": "https://romeubeauty.com.br/", "telephone": "+55-11-96469-8679", "image": "https://romeubeauty.com.br/assets/images/romeu-beauty-logo.webp", "address": {"@type": "PostalAddress", "streetAddress": "Rua Aimberê, 641", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR"}, "sameAs": ["https://www.instagram.com/romeubeauty/"]}]</script><script type="module" src="/assets/site.js?v=6"></script>
-    <link rel="stylesheet" href="/assets/beauty-tools.css?v=2"><script type="module" src="/assets/lash-try-on.mjs?v=2"></script></head><body class="page-inner beauty-tool">
+    <link rel="stylesheet" href="/assets/beauty-tools.css?v=2"><script type="module" src="/assets/lash-try-on.mjs?v=3"></script></head><body class="page-inner beauty-tool">
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header class="site-header"><div class="reading-progress" aria-hidden="true"></div><div class="header-inner"><a class="brand" href="/" aria-label="Romeu Beauty — início"><img class="brand-image" src="/assets/images/romeu-beauty-header-v4.webp" width="720" height="240" alt="Romeu Beauty" decoding="async"></a>
       <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav"><svg class="icon " width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg><span>Menu</span></button>
@@ -31,9 +31,10 @@
       <p>A foto é processada neste navegador e fica no seu aparelho.</p>
     </div>
     <div class="lash-view">
+      <p class="tool-status" data-manual-hint aria-hidden="true" hidden></p>
       <div class="tool-stage lash-stage" data-lash-stage>
       <div class="lash-placeholder" data-lash-placeholder><p>Sua foto e a simulação aparecem aqui.</p></div>
-      <canvas hidden aria-label="Foto com a prévia de cílios. No ajuste manual, use as setas e Enter para marcar os cantos dos olhos."></canvas>
+      <canvas hidden aria-label="Foto com a prévia de cílios. No ajuste manual, use as setas e Enter para marcar os cantos e o centro da linha superior de cada olho."></canvas>
     </div>
       <div class="tool-actions lash-view-actions">
         <button class="tool-chip" type="button" data-compare-lashes aria-pressed="false" disabled>Ver foto original</button>
@@ -42,7 +43,16 @@
     </div>
     <div class="tool-panel lash-options">
       <fieldset><legend>Estilo de alongamento</legend><div class="tool-options"><button class="tool-chip" type="button" data-lash-style="classico" aria-pressed="true">Fio a fio</button><button class="tool-chip" type="button" data-lash-style="brasileiro" aria-pressed="false">Brasileiro</button><button class="tool-chip" type="button" data-lash-style="egipcio" aria-pressed="false">Egípcio</button><button class="tool-chip" type="button" data-lash-style="fox" aria-pressed="false">Fox</button><button class="tool-chip" type="button" data-lash-style="mega" aria-pressed="false">Mega volume</button></div></fieldset>
-      <p class="lash-effect-description" data-lash-description>Efeito mais leve, com fios espaçados e comprimento equilibrado.</p>
+      <p class="lash-effect-description" data-lash-description>Fios individuais e leves, com comprimento equilibrado ao longo da pálpebra.</p>
+      <fieldset>
+        <legend>Curvatura dos fios</legend>
+        <div class="tool-options">
+          <button class="tool-chip" type="button" data-lash-curl="auto" aria-pressed="true">Do estilo</button>
+          <button class="tool-chip" type="button" data-lash-curl="c" aria-pressed="false">C · Suave</button>
+          <button class="tool-chip" type="button" data-lash-curl="d" aria-pressed="false">D · Marcada</button>
+          <button class="tool-chip" type="button" data-lash-curl="l" aria-pressed="false">L · Elevada</button>
+        </div>
+      </fieldset>
       <p class="tool-status" role="status" data-tool-status></p>
       <div class="tool-actions">
         <button class="tool-chip" type="button" data-adjust-eyes disabled>Ajustar posição</button>
