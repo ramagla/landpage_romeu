@@ -1,27 +1,33 @@
 import {saveCanvas, togglePressed} from './beauty-tools.mjs';
 
+// Coordinates and nail beds measured on the 800-pixel-wide hand photo.
 const fingers = [
-  {name:'Polegar', x:85, y:681, width:76, height:99, angle:-.59},
-  {name:'Indicador', x:379, y:164, width:70, height:81, angle:-.10},
-  {name:'Dedo médio', x:593, y:81, width:77, height:86, angle:0},
-  {name:'Anelar', x:792, y:165, width:68, height:82, angle:.17},
-  {name:'Mínimo', x:979, y:364, width:55, height:72, angle:.29},
+  {name:'Polegar', x:63, y:486, angle:-.59, left:-25, right:30, tip:-37, base:31},
+  {name:'Indicador', x:272, y:119, angle:-.10, left:-22, right:23, tip:-28, base:27},
+  {name:'Dedo médio', x:422, y:57, angle:.025, left:-25, right:26, tip:-32, base:31},
+  {name:'Anelar', x:562, y:117, angle:.17, left:-22, right:23, tip:-29, base:29},
+  {name:'Mínimo', x:697, y:258, angle:.29, left:-19, right:18, tip:-23, base:25},
 ];
-const templateWidth = 1122;
-const sourceHeight = 1402;
-const templateHeight = 1122;
-const imageTop = 36;
-const imageLeft = 26;
+const templateSize = 800;
+const imageTop = 52;
+const imageLeft = 21;
 const colors = {
-  natural:null, nude:'#b97469', rosa:'#d892a1', bordo:'#732742',
+  natural:null, nude:'#bf8379', rosa:'#d892a1', bordo:'#732742',
   vermelho:'#ab292e', marfim:'#f1e4cf', chocolate:'#704339', preto:'#232027', lilas:'#ad8ac1',
 };
-const lengthFactors = {curta:0, media:.29, longa:.63};
+const lengthFactors = {curta:0, media:.21, longa:.51};
+const shapes = {
+  oval: {tipWidth:0, shoulder:.65, edge:0},
+  quadrada: {tipWidth:.83, shoulder:.91, edge:.10},
+  amendoada: {tipWidth:0, shoulder:.33, edge:.014},
+  bailarina: {tipWidth:.57, shoulder:.72, edge:.085},
+};
+const translucentPolish = {natural:.54, nude:.71, rosa:.82, marfim:.93, lilas:.93};
 const initial = {color:'natural', shape:'oval', length:'curta', design:'nenhuma', finish:'brilho'};
 const presets = {
-  nude: {...initial, color:'nude', shape:'amendoada', length:'media'},
-  francesinha: {...initial, color:'nude', shape:'quadrada', length:'media', design:'francesinha'},
-  bordo: {...initial, color:'bordo', shape:'bailarina', length:'longa'},
+  nude: {...initial, color:'nude'},
+  francesinha: {...initial, color:'nude', shape:'oval', length:'media', design:'francesinha'},
+  bordo: {...initial, color:'bordo', shape:'bailarina', length:'media'},
 };
 const studio = document.querySelector('[data-nail-studio]');
 const canvas = studio.querySelector('canvas');
@@ -35,6 +41,7 @@ const selection = studio.querySelector('[data-current-nail]');
 const save = studio.querySelector('[data-save-nails]');
 const hand = new Image();
 const designs = fingers.map(() => ({...presets.nude}));
+let nailLighting = [];
 let selected = 1;
 let drag;
 let draggedButton;
@@ -45,8 +52,8 @@ const targets = fingers.map((finger, index) => {
   button.className = 'nail-target';
   button.dataset.finger = index;
   button.setAttribute('aria-label', finger.name);
-  button.style.left = 100 * (finger.x + imageLeft) / templateWidth + '%';
-  button.style.top = 100 * (finger.y + imageTop) / templateHeight + '%';
+  button.style.left = 100 * (finger.x + imageLeft) / templateSize + '%';
+  button.style.top = 100 * (finger.y + imageTop) / templateSize + '%';
   button.addEventListener('click', () => select(index));
   stage.append(button);
   return button;
@@ -62,39 +69,104 @@ function select(index) {
   }
 }
 
-function nailPath(ctx, width, top, bottom, shape) {
-  const side = width / 2;
+function nailPath(ctx, finger, top, shape) {
+  const {left, right, tip, base} = finger;
+  const center = (left + right) / 2;
+  const half = (right - left) / 2;
+  const bedHeight = base - tip;
+  const shoulderY = tip + bedHeight * .44;
+  const rim = Math.min(4, half * .16);
+  const tipHalf = half * shape.tipWidth;
+  const curve = bedHeight * shape.edge;
+  const extension = tip - top;
+
   ctx.beginPath();
-  const cuticle = Math.min(width * .16, 13);
-  ctx.moveTo(-side, bottom - cuticle);
-  ctx.quadraticCurveTo(-side, bottom - 1, -side * .63, bottom);
-  ctx.quadraticCurveTo(0, bottom + 6, side * .63, bottom);
-  ctx.quadraticCurveTo(side, bottom - 1, side, bottom - cuticle);
-  if (shape === 'quadrada' || shape === 'bailarina') {
-    const tip = shape === 'bailarina' ? side * .68 : side;
-    ctx.lineTo(tip, top + 5);
-    ctx.quadraticCurveTo(tip, top, tip - 5, top);
-    ctx.lineTo(-tip + 5, top);
-    ctx.quadraticCurveTo(-tip, top, -tip, top + 5);
-    ctx.lineTo(-side, bottom - cuticle);
-  } else if (shape === 'amendoada') {
-    ctx.bezierCurveTo(side, top + 14, side * .43, top + 1, 0, top);
-    ctx.bezierCurveTo(-side * .43, top + 1, -side, top + 14, -side, bottom - cuticle);
-  } else {
-    ctx.bezierCurveTo(side, top + 5, side * .57, top, 0, top);
-    ctx.bezierCurveTo(-side * .57, top, -side, top + 5, -side, bottom - cuticle);
-  }
+  ctx.moveTo(center - half * .65, base);
+  ctx.bezierCurveTo(center - half * .18, base + 3, center + half * .52, base + 2, center + half * .73, base - 3);
+  ctx.bezierCurveTo(right - 2, base - 7, right, base - bedHeight * .26, right, shoulderY);
+  ctx.bezierCurveTo(right - 1, tip + bedHeight * (.17 - shape.shoulder * .08),
+    center + half * shape.shoulder, top + curve, center + tipHalf, top);
+  ctx.quadraticCurveTo(center, top - (tipHalf ? rim * .38 : 0), center - tipHalf, top);
+  ctx.bezierCurveTo(center - half * shape.shoulder, top + curve,
+    left + 2, tip + bedHeight * .11 + extension * .05, left, shoulderY);
+  ctx.bezierCurveTo(left - 1, base - bedHeight * .31, left + 1, base - 4, center - half * .65, base);
   ctx.closePath();
+}
+
+function sampleNailLighting(finger) {
+  const sample = document.createElement('canvas');
+  sample.width = 32;
+  sample.height = 42;
+  const ctx = sample.getContext('2d', {willReadFrequently:true});
+  const {x, y, angle, left, right, tip, base} = finger;
+  const width = (right - left) * .55;
+  const height = (base - tip) * .61;
+  ctx.translate(sample.width / 2, sample.height / 2);
+  ctx.scale(sample.width / width, sample.height / height);
+  ctx.translate(-(left + right) / 2, -(tip + base) / 2);
+  ctx.rotate(-angle);
+  ctx.drawImage(hand, -x, -y);
+  const light = ctx.getImageData(0, 0, sample.width, sample.height);
+  const values = new Float32Array(sample.width * sample.height);
+  for (let index = 0; index < values.length; index++) {
+    const i = index * 4;
+    values[index] = light.data[i] * .2126 + light.data[i + 1] * .7152 + light.data[i + 2] * .0722;
+  }
+  const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+  for (let index = 0; index < values.length; index++) {
+    const i = index * 4;
+    const delta = values[index] - mean;
+    const tone = delta > 0 ? 255 : 0;
+    light.data[i] = light.data[i + 1] = light.data[i + 2] = tone;
+    light.data[i + 3] = Math.min(92, Math.abs(delta) * 2.5);
+  }
+  ctx.putImageData(light, 0, 0);
+  return sample;
+}
+
+function gelSurface(ctx, width, top, height, glossy, lighting) {
+  // The darker sidewalls and broad reflected light give the coat its cross-section.
+  const curvature = ctx.createLinearGradient(-width * .49, 0, width * .51, 0);
+  curvature.addColorStop(0, '#3f1c2b35');
+  curvature.addColorStop(.18, '#4d2d3510');
+  curvature.addColorStop(.42, '#fff3ed18');
+  curvature.addColorStop(.64, '#fff5ed0b');
+  curvature.addColorStop(.86, '#34202a15');
+  curvature.addColorStop(1, '#3f1c2b32');
+  ctx.fillStyle = curvature;
+  ctx.fillRect(-width, top - 3, width * 2, height + 8);
+
+  ctx.save();
+  ctx.globalAlpha = glossy ? .54 : .34;
+  ctx.drawImage(lighting, -width * .51, top - 1, width * 1.04, height + 5);
+  ctx.restore();
+
+  // A soft highlight follows the light in the photo and fades before the cuticle.
+  ctx.save();
+  ctx.translate(-width * .095, top + height * .38);
+  ctx.rotate(-.085);
+  ctx.scale(width * .27, height * .42);
+  const reflection = ctx.createRadialGradient(0, 0, .05, 0, 0, 1);
+  reflection.addColorStop(0, glossy ? '#fff9f650' : '#fff9f61e');
+  reflection.addColorStop(.27, glossy ? '#fff8f444' : '#fff9f617');
+  reflection.addColorStop(.68, glossy ? '#ffedf52b' : '#fff9f609');
+  reflection.addColorStop(1, '#fff9f600');
+  ctx.fillStyle = reflection;
+  ctx.fillRect(-1, -1, 2, 2);
+  ctx.restore();
 }
 
 function drawDecoration(ctx, design, width, top, height) {
   if (design === 'francesinha') {
-    ctx.strokeStyle = '#fff5e7';
-    ctx.lineWidth = Math.max(3, height * .10);
+    const edge = top + height * .135;
+    ctx.fillStyle = '#fff5ebeb';
     ctx.beginPath();
-    ctx.moveTo(-width * .68, top + height * .24);
-    ctx.quadraticCurveTo(0, top - height * .05, width * .68, top + height * .24);
-    ctx.stroke();
+    ctx.moveTo(-width, top - 3);
+    ctx.lineTo(width, top - 3);
+    ctx.lineTo(width, edge - height * .12);
+    ctx.quadraticCurveTo(0, edge + height * .17, -width, edge - height * .12);
+    ctx.closePath();
+    ctx.fill();
   } else if (design === 'glitter') {
     for (let i = 0; i < 34; i++) {
       const x = ((i * 73 % 97) / 97 - .5) * width;
@@ -132,55 +204,57 @@ function drawDecoration(ctx, design, width, top, height) {
 
 function render() {
   if (!hand.complete || !hand.naturalWidth) return;
-  const top = canvas.height * imageTop / templateHeight;
-  const left = canvas.width * imageLeft / templateWidth;
-  const photoHeight = (templateHeight - imageTop) / sourceHeight * hand.naturalHeight;
-  const photoWidth = (templateWidth - imageLeft) / templateWidth * hand.naturalWidth;
-  context.drawImage(hand,0,0,photoWidth,1,left,0,canvas.width-left,top);
-  context.drawImage(hand,0,0,1,1,0,0,left,top);
-  context.drawImage(hand,0,0,1,photoHeight,0,top,left,canvas.height-top);
-  context.drawImage(hand,0,0,photoWidth,photoHeight,left,top,canvas.width-left,canvas.height-top);
   context.save();
-  context.scale(canvas.width / templateWidth, canvas.height / templateHeight);
-  for (let index = 0; index < fingers.length; index++) {
+  context.scale(canvas.width / templateSize, canvas.height / templateSize);
+  const photoWidth = templateSize - imageLeft;
+  const photoHeight = templateSize - imageTop;
+  context.drawImage(hand, 0, 0, photoWidth, 1, imageLeft, 0, photoWidth, imageTop);
+  context.drawImage(hand, 0, 0, 1, 1, 0, 0, imageLeft, imageTop);
+  context.drawImage(hand, 0, 0, 1, photoHeight, 0, imageTop, imageLeft, photoHeight);
+  context.drawImage(hand, 0, 0, photoWidth, photoHeight, imageLeft, imageTop, photoWidth, photoHeight);
+
+  for (const [index, finger] of fingers.entries()) {
     const config = designs[index];
-    const color = colors[config.color];
-    if (!color && config.shape === initial.shape && config.length === initial.length && config.design === initial.design && config.finish === initial.finish) continue;
-    const {x,y,angle,width,height} = fingers[index];
-    const bottom = height * .46;
-    const top = -height * (.52 + lengthFactors[config.length]);
+    if (Object.keys(initial).every(key => config[key] === initial[key])) continue;
+
+    const {x, y, angle, left, right, tip, base} = finger;
+    const width = right - left;
+    const newShape = config.shape !== initial.shape;
+    const extension = (base - tip) * lengthFactors[config.length] + (newShape ? 4 : 0);
+    const top = tip - extension;
+    const height = base - top;
+    const glossy = config.finish === 'brilho';
+
     context.save();
     context.translate(x + imageLeft, y + imageTop);
     context.rotate(angle);
-    nailPath(context, width, top, bottom, config.shape);
+    nailPath(context, finger, top, shapes[config.shape]);
+    if (extension > 4) {
+      context.save();
+      context.shadowColor = '#4f30262b';
+      context.shadowBlur = 2.3;
+      context.shadowOffsetY = 1.9;
+      context.fillStyle = '#4f30262f';
+      context.fill();
+      context.restore();
+    }
     context.clip();
-    if (color || config.length !== initial.length || config.shape !== initial.shape) {
-      context.fillStyle = color || '#d3a18b';
-      context.fillRect(-width, top, width * 2, bottom - top + 4);
-      const shine = context.createLinearGradient(-width / 2, 0, width / 2, 0);
-      const glossy = config.finish === 'brilho';
-      shine.addColorStop(0, '#21110e4b');
-      shine.addColorStop(.32, glossy ? '#fff4e67a' : '#fff4e621');
-      shine.addColorStop(.53, glossy ? '#fff9f023' : '#fff4e615');
-      shine.addColorStop(1, '#21110e39');
-      context.fillStyle = shine;
-      context.fillRect(-width, top, width * 2, bottom - top + 4);
+
+    // Keep the photo's own detail in translucent colors and lay gel over the free edge.
+    if (colors[config.color] || extension > 0 || !glossy) {
+      const coverage = translucentPolish[config.color] ?? .98;
+      const pigment = colors[config.color] || '#dbac9c';
+      const coat = context.createLinearGradient(0, top, 0, base + 3);
+      const edge = extension / height;
+      coat.addColorStop(0, pigment);
+      coat.addColorStop(Math.max(.035, edge), pigment);
+      coat.addColorStop(Math.min(.76, edge + .20), pigment + Math.round(coverage * 255).toString(16).padStart(2, '0'));
+      coat.addColorStop(1, pigment + Math.round(coverage * 237).toString(16).padStart(2, '0'));
+      context.fillStyle = coat;
+      context.fillRect(-width, top - 3, width * 2, height + 8);
     }
-    drawDecoration(context, config.design, width, top, bottom - top);
-    if (config.finish === 'brilho' && (color || config.length !== initial.length || config.shape !== initial.shape)) {
-      const highlight = context.createLinearGradient(0,top,0,bottom);
-      highlight.addColorStop(0,'#fff7ed0a');
-      highlight.addColorStop(.24,'#fffaf0a0');
-      highlight.addColorStop(.66,'#fff7ed30');
-      highlight.addColorStop(1,'#fff7ed0a');
-      context.lineCap = 'round';
-      context.strokeStyle = highlight;
-      context.lineWidth = Math.max(2,width * .052);
-      context.beginPath();
-      context.moveTo(-width * .20, top + (bottom - top) * .16);
-      context.quadraticCurveTo(-width * .31, top + (bottom - top) * .40, -width * .24, bottom - (bottom - top) * .21);
-      context.stroke();
-    }
+    drawDecoration(context, config.design, width, top, height);
+    gelSurface(context, width, top, height, glossy, nailLighting[index]);
     context.restore();
   }
   context.restore();
@@ -282,7 +356,11 @@ save.addEventListener('click', async () => {
   }
 });
 select(1);
-hand.onload = () => { render(); save.disabled = false; };
+hand.onload = () => {
+  nailLighting = fingers.map(sampleNailLighting);
+  render();
+  save.disabled = false;
+};
 hand.onerror = () => { status.textContent = 'Não foi possível carregar a mão. Atualize a página para tentar de novo.'; };
 hand.src = '/assets/images/atelie-mao.jpg';
 for (const swatch of studio.querySelectorAll('.nail-swatch')) {
