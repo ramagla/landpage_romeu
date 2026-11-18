@@ -17,10 +17,10 @@ const colors = {
 };
 const lengthFactors = {curta:0, media:.21, longa:.51};
 const shapes = {
-  oval: {tipWidth:0, shoulder:.65, edge:0},
-  quadrada: {tipWidth:.83, shoulder:.91, edge:.10},
-  amendoada: {tipWidth:0, shoulder:.33, edge:.014},
-  bailarina: {tipWidth:.57, shoulder:.72, edge:.085},
+  oval: {tipWidth:0, shoulder:.76, edge:0, fullness:.37},
+  quadrada: {tipWidth:.89, shoulder:.94, edge:.10, fullness:.42},
+  amendoada: {tipWidth:0, shoulder:.30, edge:.012, fullness:.05},
+  bailarina: {tipWidth:.57, shoulder:.73, edge:.085, fullness:.22},
 };
 const translucentPolish = {natural:.54, nude:.71, rosa:.82, marfim:.93, lilas:.93};
 const initial = {color:'natural', shape:'oval', length:'curta', design:'nenhuma', finish:'brilho'};
@@ -79,16 +79,20 @@ function nailPath(ctx, finger, top, shape) {
   const tipHalf = half * shape.tipWidth;
   const curve = bedHeight * shape.edge;
   const extension = tip - top;
+  const corner = tipHalf ? rim : 0;
+  const sideCurve = tip + bedHeight * .1 - extension * shape.fullness;
 
   ctx.beginPath();
   ctx.moveTo(center - half * .65, base);
   ctx.bezierCurveTo(center - half * .18, base + 3, center + half * .52, base + 2, center + half * .73, base - 3);
   ctx.bezierCurveTo(right - 2, base - 7, right, base - bedHeight * .26, right, shoulderY);
-  ctx.bezierCurveTo(right - 1, tip + bedHeight * (.17 - shape.shoulder * .08),
-    center + half * shape.shoulder, top + curve, center + tipHalf, top);
-  ctx.quadraticCurveTo(center, top - (tipHalf ? rim * .38 : 0), center - tipHalf, top);
+  ctx.bezierCurveTo(right - 1, sideCurve,
+    center + half * shape.shoulder, top + curve, center + tipHalf, top + corner);
+  ctx.quadraticCurveTo(center + tipHalf, top, center + tipHalf - corner, top);
+  ctx.lineTo(center - tipHalf + corner, top);
+  ctx.quadraticCurveTo(center - tipHalf, top, center - tipHalf, top + corner);
   ctx.bezierCurveTo(center - half * shape.shoulder, top + curve,
-    left + 2, tip + bedHeight * .11 + extension * .05, left, shoulderY);
+    left + 2, sideCurve + 1.5, left, shoulderY);
   ctx.bezierCurveTo(left - 1, base - bedHeight * .31, left + 1, base - 4, center - half * .65, base);
   ctx.closePath();
 }

@@ -3,8 +3,8 @@ import {photoFromFile, saveCanvas, togglePressed} from './beauty-tools.mjs';
 // Relative lengths from the inner to the outer corner, interpreted visually.
 const styles = {
   classico: {density:23, fan:1, length:.28, thickness:.011, spread:0, curl:'c', map:[.35,.61,.83,1,.94,.76,.43], text:'Fios individuais e leves, com comprimento equilibrado ao longo da pálpebra.'},
-  brasileiro: {density:22, fan:2, length:.32, thickness:.010, spread:.17, curl:'c', map:[.34,.62,.83,.94,1,.90,.48], text:'Fios em pares, com um volume mais aberto na metade externa.'},
-  egipcio: {density:23, fan:3, length:.34, thickness:.009, spread:.22, curl:'d', map:[.37,.65,.89,1,.96,.84,.48], text:'Leques com maior definição no centro e nas pontas dos fios.'},
+  brasileiro: {density:22, fan:2, length:.30, thickness:.010, spread:.15, curl:'c', map:[.25,.57,.81,.95,1,.87,.48], text:'Fios em Y, com um volume leve e mais aberto na metade externa.'},
+  egipcio: {density:24, fan:3, length:.35, thickness:.009, spread:.27, centerFiber:true, curl:'d', map:[.25,.57,.88,1,.93,.79,.42], text:'Leques em W com fios centrais mais longos e maior preenchimento no centro do olhar.'},
   fox: {density:25, fan:2, length:.36, thickness:.010, spread:.14, curl:'l', map:[.26,.43,.61,.77,.94,1,.71], sweep:.32, text:'Comprimento concentrado perto do canto externo, com uma transição mais curta na extremidade.'},
   mega: {density:30, fan:5, length:.36, thickness:.008, spread:.25, curl:'d', map:[.42,.68,.91,1,1,.91,.53], text:'Leques finos e densos para um acabamento de maior volume.'},
 };
@@ -137,7 +137,7 @@ function drawLashes(samples, settings, side) {
   // Distribute roots by arc length, so irregular landmark spacing does not bunch up the fibers.
   let segment = 1;
   for (let i = 0; i < settings.density; i++) {
-    const t = .045 + .91 * (i + .5 + Math.sin(i * 17.3) * .22) / settings.density;
+    const t = .065 + .885 * (i + .5 + Math.sin(i * 17.3) * .22) / settings.density;
     const arc = end.distance * t;
     while (samples[segment].distance < arc) segment++;
     const a = samples[segment - 1];
@@ -157,11 +157,12 @@ function drawLashes(samples, settings, side) {
     const envelope = interpolate(settings.map[index], settings.map[index + 1], zone - index);
     const texture = 1 + Math.sin(i * 13.7 + side * .37) * .14;
     const length = width * settings.length * envelope * texture;
-    const lean = -.52 + outer * (.71 + (settings.sweep || 0)) + Math.sin(i * 6.2 + side) * .07;
+    const lean = -.44 + outer * (.64 + (settings.sweep || 0)) + Math.sin(i * 6.2 + side) * .07;
 
     for (let strand = 0; strand < settings.fan; strand++) {
       const spread = (strand - (settings.fan - 1) / 2) * settings.spread;
-      const strandLength = length * (1 - Math.abs(spread) * .28);
+      const taper = settings.centerFiber && strand !== 1 ? .82 : 1;
+      const strandLength = length * taper * (1 - Math.abs(spread) * .28);
       drawFiber(root, normal, across, strandLength, lean + spread,
         Math.max(.58, width * settings.thickness), shape, settings.fan === 1 ? .92 : .80);
     }
