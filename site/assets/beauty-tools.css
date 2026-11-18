@@ -64,7 +64,7 @@
   border-radius: 50%;
   background: var(--swatch);
 }
-.nail-stage { aspect-ratio: 4 / 5; }
+.nail-stage { aspect-ratio: 1; width: 100%; }
 .nail-target {
   position: absolute;
   z-index: 1;
@@ -78,7 +78,7 @@
   color: #fffaf0;
   cursor: pointer;
 }
-.nail-target[aria-pressed="true"], .nail-stage.is-dragging .nail-target {
+.nail-stage.is-dragging .nail-target {
   border-color: #fffaf0;
   box-shadow: 0 0 0 1px #60263baa;
 }
@@ -114,7 +114,7 @@
   margin-inline: auto;
 }
 @media (max-width: 760px) {
-  .nail-stage { top: 76px; max-width: min(100%, 310px, 43svh); }
+  .nail-stage { position: relative; top: auto; z-index: auto; max-width: min(100%, 280px, 40svh); }
 }
 .lash-camera-button { display: none; }
 @media (pointer: coarse) {
@@ -131,3 +131,4 @@
   .lash-view { position: static; }
   .lash-stage { max-width: min(100%, 385px); }
 }
+.nail-categories { padding-top: 6px; border-top: 1px solid var(--tool-border); }
